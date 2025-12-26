@@ -15,7 +15,7 @@ div, header, footer, main, section, aside, button, span, a, h1, h2 { box-sizing:
   word-break: keep-all;
 }
 
-/* ✅ Experience Builder 컨텐츠 컨테이너 폭/패딩 영향 제거(풀-와이드 복원용) */
+/* Experience Builder 컨텐츠 컨테이너 폭/패딩 영향 제거(풀-와이드 복원용) */
 .page {
   width: 100vw;
   margin-left: calc(50% - 50vw);
