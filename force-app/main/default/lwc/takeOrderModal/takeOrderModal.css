@@ -1,0 +1,196 @@
+/* 모달 크기 조정 */
+.slds-modal_large .slds-modal__container {
+    max-width: 60rem;
+    width: 90%;
+}
+
+.slds-modal__container {
+    border-radius: 8px;
+}
+
+/* 모달 애니메이션 */
+.slds-modal {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 모달 헤더 */
+.slds-modal__header {
+    background: #4e1000;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.slds-modal__header h2 {
+    color: white;
+}
+
+/* 모달 푸터 */
+.slds-modal__footer {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* 그리드 조정 */
+.slds-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+}
+
+.slds-col.slds-size_1-of-1.slds-medium-size_1-of-2 {
+    flex: 0 0 48%;
+    max-width: 48%;
+}
+
+/* 오른쪽 컨텐츠 영역 */
+.right-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* 미리보기 섹션 */
+.preview-container-modal {
+    height: 100%;
+}
+
+.preview-box {
+    background: #f3f3f3;
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-preview {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.product-preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* 이니셜 오버레이 - CSS %로 위치 정의 */
+.initials-overlay {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.initials-overlay.position-center-top {
+    top: 25%;
+}
+
+.initials-overlay.position-center-bottom {
+    bottom: 20%;
+}
+
+/* 플레이스홀더 */
+.placeholder {
+    text-align: center;
+    color: #706e6b;
+}
+
+/* 주문 내용 박스 */
+.slds-box.slds-theme_default {
+    border: 1px solid #dddbda;
+    border-radius: 8px;
+    flex: 1;
+}
+
+/* 리뷰 아이템 */
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+.review-label {
+    font-weight: 600;
+    color: #3e3e3c;
+    font-size: 0.875rem;
+}
+
+.review-value {
+    color: #080707;
+    font-size: 0.875rem;
+}
+
+/* 색상 미리보기 */
+.color-preview-inline {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: 2px solid #dddbda;
+}
+
+/* 베이지색 정보 박스 - 제목 제거 */
+.slds-box.slds-theme_shade.info-box {
+    background: #e6e2d1;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.info-box p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.info-box strong {
+    color: #4e1000;
+}
+
+/* 모달 컨텐츠 스크롤 */
+.slds-modal__content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .slds-col.slds-size_1-of-1.slds-medium-size_1-of-2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .preview-box {
+        min-height: 300px;
+    }
+    
+    .product-preview {
+        max-width: 250px;
+    }
+    
+    .initials-overlay span {
+        font-size: 20px !important;
+    }
+}

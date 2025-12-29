@@ -1,0 +1,137 @@
+<template>
+    <!-- lightning-card 없이 버튼만 -->
+    <lightning-button 
+        label="제작 담당하기"
+        icon-name="utility:task"
+        variant="brand"
+        onclick={handleOpenModal}
+        class="slds-m-around_small"
+    ></lightning-button>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">제작 상세 내역 확인</h2>
+                </header>
+                
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    
+                    <!-- 로딩 스피너 -->
+                    <template if:true={isLoading}>
+                        <div class="slds-is-relative" style="min-height: 200px;">
+                            <lightning-spinner alternative-text="처리 중..." size="medium"></lightning-spinner>
+                        </div>
+                    </template>
+                    
+                    <!-- 주문 내용 (로딩 중이 아닐 때만 표시) -->
+                    <template if:false={isLoading}>
+                        
+                        <div class="slds-grid slds-wrap slds-gutters">
+                            
+                            <!-- 왼쪽: 제품 미리보기 -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <div class="preview-container-modal">
+                                    <h3 class="slds-text-heading_small slds-m-bottom_small">최종 미리보기</h3>
+                                    <div class="preview-box">
+                                        <template if:true={productImageUrl}>
+                                            <div class="product-preview">
+                                                <img src={productImageUrl} alt="제품 미리보기" />
+                                                
+                                                <!-- 이니셜 오버레이 -->
+                                                <template if:true={showInitials}>
+                                                    <div class={initialsOverlayClass}>
+                                                        <span style={initialsStyle}>{initials}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        
+                                        <!-- 이미지 없음 -->
+                                        <template if:false={productImageUrl}>
+                                            <div class="placeholder">
+                                                <lightning-icon icon-name="standard:product" size="large"></lightning-icon>
+                                                <p class="slds-m-top_small">제품 이미지</p>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 오른쪽: 주문 상세 내용 -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <div class="right-content">
+                                    <!-- 주문 내용 박스 -->
+                                    <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                                        <h3 class="slds-text-heading_small slds-m-bottom_medium">주문 내용</h3>
+                                        
+                                        <!-- 카테고리 -->
+                                        <div class="review-item slds-m-bottom_small">
+                                            <span class="review-label">카테고리</span>
+                                            <span class="review-value">{selectedFamily}</span>
+                                        </div>
+                                        
+                                        <!-- 제품명 -->
+                                        <div class="review-item slds-m-bottom_small">
+                                            <span class="review-label">제품</span>
+                                            <span class="review-value">{productName}</span>
+                                        </div>
+                                        
+                                        <!-- 이니셜 -->
+                                        <div class="review-item slds-m-bottom_small">
+                                            <span class="review-label">이니셜 문구</span>
+                                            <span class="review-value">{initials}</span>
+                                        </div>
+                                        
+                                        <!-- 색상 -->
+                                        <div class="review-item slds-m-bottom_small">
+                                            <span class="review-label">이니셜 색상</span>
+                                            <div class="color-preview-inline" style={colorPreviewStyle}></div>
+                                        </div>
+                                        
+                                        <!-- 위치 -->
+                                        <div class="review-item slds-m-bottom_small">
+                                            <span class="review-label">이니셜 위치</span>
+                                            <span class="review-value">{positionLabel}</span>
+                                        </div>
+                                        
+                                        <!-- 픽업 매장 -->
+                                        <div class="review-item">
+                                            <span class="review-label">픽업 매장</span>
+                                            <span class="review-value">{storeName}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 담당자 변경 안내 -->
+                                    <div class="slds-box slds-theme_shade info-box">
+                                        <p>
+                                            담당자를 본인으로 변경하고, 단계를 <strong>'견적논의'</strong>로 진행하시겠습니까?
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </template>
+                </div>
+                
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={handleCloseModal} disabled={isLoading}>취소</button>
+                    <lightning-button 
+                        label="확인 및 배정"
+                        variant="brand"
+                        onclick={handleConfirm}
+                        disabled={isLoading}
+                        class="slds-m-left_x-small"
+                    ></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
