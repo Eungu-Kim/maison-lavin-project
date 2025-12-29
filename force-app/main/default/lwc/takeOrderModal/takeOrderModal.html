@@ -1,12 +1,16 @@
 <template>
-    <!-- lightning-card 없이 버튼만 -->
-    <lightning-button 
-        label="제작 담당하기"
-        icon-name="utility:task"
-        variant="brand"
-        onclick={handleOpenModal}
-        class="slds-m-around_small"
-    ></lightning-button>
+    <!-- 버튼 - 견적서 생성과 동일한 구조 -->
+    <template if:false={isModalOpen}>
+        <div style="margin-top: 12px; margin-bottom: 16px;">
+            <lightning-button 
+                label="제작 담당하기"
+                icon-name="utility:task"
+                variant="brand"
+                onclick={handleOpenModal}
+                class="slds-m-around_small">
+            </lightning-button>
+        </div>
+    </template>
 
     <template if:true={isModalOpen}>
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
