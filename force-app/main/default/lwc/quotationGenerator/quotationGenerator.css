@@ -1,3 +1,32 @@
+/* 기존 CSS + 추가 */
+
+/* 제작 유형 뱃지 */
+.design-types-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.design-type-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #e6e2d1;
+    border: 1px solid #4e1000;
+    border-radius: 20px;
+}
+
+.type-label {
+    font-weight: 600;
+    color: #3e3e3c;
+}
+
+.type-price {
+    color: #4e1000;
+    font-weight: 600;
+}
+
 /* 전체 컨테이너 */
 .slds-card {
     border-radius: 8px;

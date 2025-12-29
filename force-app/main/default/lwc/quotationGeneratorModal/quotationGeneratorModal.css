@@ -1,0 +1,42 @@
+/* 모달 크기 조정 */
+.slds-modal_large .slds-modal__container {
+    max-width: 60rem;
+    width: 90%;
+}
+
+/* 버튼 스타일 */
+lightning-button {
+    display: inline-block;
+}
+
+/* 모달 애니메이션 */
+.slds-modal {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 모달 헤더 */
+.slds-modal__header {
+    background: #4e1000;
+    color: white;
+}
+
+.slds-modal__header h2 {
+    color: white;
+}
+
+/* 스크롤 */
+.slds-modal__content {
+    max-height: 70vh;
+    overflow-y: auto;
+}

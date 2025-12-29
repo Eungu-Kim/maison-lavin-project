@@ -11,29 +11,30 @@
                 </template>
             </div>
             
-            <!-- 디자인 옵션 선택 -->
+            <!-- 제작 유형 (읽기 전용) -->
             <div class="slds-m-bottom_medium">
-                <div class="slds-text-heading_small slds-m-bottom_small">디자인 옵션</div>
-                <div class="design-options">
-                    <template for:each={designOptionsWithFormattedPrice} for:item="option">
-                        <div key={option.value} class="slds-m-bottom_x-small">
-                            <lightning-input 
-                                type="checkbox"
-                                label={option.value}
-                                value={option.value}
-                                checked={option.selected}
-                                onchange={handleDesignTypeChange}
-                            ></lightning-input>
-                        </div>
-                    </template>
-                </div>
+                <div class="slds-text-heading_small slds-m-bottom_small">제작 유형</div>
+                <template if:true={hasDesignTypes}>
+                    <div class="design-types-display">
+                        <template for:each={selectedDesignTypes} for:item="type">
+                            <div key={type.value} class="design-type-badge">
+                                <lightning-icon icon-name="utility:check" size="x-small"></lightning-icon>
+                                <span class="type-label">{type.label}</span>
+                                <span class="type-price">{type.formattedPrice}</span>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template if:false={hasDesignTypes}>
+                    <div class="slds-text-color_weak">
+                        제작 유형이 선택되지 않았습니다.
+                    </div>
+                </template>
             </div>
             
             <!-- 시안 목록 -->
             <div class="slds-m-bottom_medium">
-                <div class="slds-text-heading_small slds-m-bottom_small">
-                    시안 목록
-                </div>
+                <div class="slds-text-heading_small slds-m-bottom_small">시안 목록</div>
                 <template if:true={hasDesignFiles}>
                     <div class="design-files-grid">
                         <template for:each={designFiles} for:item="file">
@@ -59,7 +60,7 @@
             
             <!-- 최종 시안 드롭 영역 -->
             <div class="slds-m-bottom_medium">
-                <div class="slds-text-heading_small slds-m-bottom_small">최종 시안</div>
+                <div class="slds-text-heading_small slds-m-bottom_small">최종 시안 선택</div>
                 <div 
                     class={dropZoneClass}
                     ondrop={handleDrop}
@@ -72,8 +73,8 @@
                             label="선택 취소"
                             variant="destructive-text"
                             onclick={handleRemoveDesign}
-                            class="slds-m-top_small"
-                        ></lightning-button>
+                            class="slds-m-top_small">
+                        </lightning-button>
                     </template>
                     <template if:false={hasSelectedDesign}>
                         <lightning-icon icon-name="utility:image" size="large"></lightning-icon>
@@ -86,6 +87,7 @@
             
             <!-- 금액 계산 -->
             <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <div class="slds-text-heading_small slds-m-bottom_small">견적 금액</div>
                 <table class="slds-table slds-table_borderless">
                     <tbody>
                         <tr>
@@ -113,8 +115,8 @@
                     variant="brand"
                     onclick={handleGenerateQuotation}
                     disabled={isGenerateDisabled}
-                    class="slds-m-top_small"
-                ></lightning-button>
+                    class="slds-m-top_small">
+                </lightning-button>
             </div>
             
         </div>

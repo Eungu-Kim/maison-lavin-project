@@ -1,5 +1,5 @@
 import { LightningElement, api, wire, track } from 'lwc';
-import { getRecord, updateRecord } from 'lightning/uiRecordApi';
+import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 
@@ -13,12 +13,21 @@ import DESIGN_TYPE from '@salesforce/schema/Opportunity.Design_Type__c';
 export default class QuotationGenerator extends LightningElement {
     @api recordId;
     
-    @track designOptions = [
-        { label: '이니셜', value: 'Initial', price: 500000, selected: false },
-        { label: '패치', value: 'Patch', price: 600000, selected: false },
-        { label: '자수', value: 'Embroidery', price: 800000, selected: false },
-        { label: '스터드', value: 'Stud', price: 900000, selected: false }
-    ];
+    // 제작 유형별 가격 매핑
+    designTypePrices = {
+        '이니셜': 500000,
+        '패치': 600000,
+        '자수': 800000,
+        '스터드': 900000
+    };
+    
+    // 제작 유형 라벨 매핑
+    designTypeLabels = {
+        'Initial': '이니셜',
+        'Patch': '패치',
+        'Embroidery': '자수',
+        'Stud': '스터드'
+    };
     
     @track designFiles = [];
     @track selectedDesignId = null;
@@ -27,6 +36,7 @@ export default class QuotationGenerator extends LightningElement {
     productId = null;
     productName = '';
     productPrice = 0;
+    designTypeValue = '';  // Design_Type__c 필드 값
     isDragOver = false;
     
     wiredOpportunityResult;
@@ -41,16 +51,9 @@ export default class QuotationGenerator extends LightningElement {
         
         if (result.data) {
             this.productId = result.data.fields.Selected_Product__c.value;
+            this.designTypeValue = result.data.fields.Design_Type__c.value || '';
             
-            // 기존 선택된 디자인 타입
-            const existingTypes = result.data.fields.Design_Type__c.value;
-            if (existingTypes) {
-                const types = existingTypes.split(', ');
-                this.designOptions = this.designOptions.map(option => ({
-                    ...option,
-                    selected: types.includes(option.value)
-                }));
-            }
+            console.log('Design Type Value:', this.designTypeValue);
             
             if (this.productId) {
                 this.loadProductInfo();
@@ -83,19 +86,6 @@ export default class QuotationGenerator extends LightningElement {
             .catch(error => {
                 console.error('Error loading files:', error);
             });
-    }
-    
-    // 디자인 옵션 선택
-    handleDesignTypeChange(event) {
-        const value = event.target.value;
-        const isChecked = event.target.checked;
-        
-        this.designOptions = this.designOptions.map(option => {
-            if (option.value === value) {
-                return { ...option, selected: isChecked };
-            }
-            return option;
-        });
     }
     
     // 드래그 시작
@@ -138,13 +128,8 @@ export default class QuotationGenerator extends LightningElement {
     
     // 견적서 생성
     handleGenerateQuotation() {
-        const selectedTypes = this.designOptions
-            .filter(opt => opt.selected)
-            .map(opt => opt.value)
-            .join(', ');
-        
-        if (!selectedTypes) {
-            this.showToast('오류', '디자인 옵션을 선택해주세요', 'error');
+        if (!this.designTypeValue) {
+            this.showToast('오류', '제작 유형이 선택되지 않았습니다', 'error');
             return;
         }
         
@@ -155,7 +140,7 @@ export default class QuotationGenerator extends LightningElement {
         
         const data = {
             opportunityId: this.recordId,
-            designType: selectedTypes,
+            designType: this.designTypeValue,
             selectedDesignId: this.selectedDesignId,
             totalAmount: this.totalAmount
         };
@@ -163,6 +148,10 @@ export default class QuotationGenerator extends LightningElement {
         createQuotation({ data: JSON.stringify(data) })
             .then(() => {
                 this.showToast('성공', '견적서가 생성되었습니다', 'success');
+                
+                // 부모에게 이벤트 전달 (모달 닫기)
+                this.dispatchEvent(new CustomEvent('quotationgenerated'));
+                
                 return refreshApex(this.wiredOpportunityResult);
             })
             .catch(error => {
@@ -187,6 +176,10 @@ export default class QuotationGenerator extends LightningElement {
         return this.selectedDesignId !== null;
     }
     
+    get hasDesignTypes() {
+        return this.designTypeValue && this.designTypeValue.length > 0;
+    }
+    
     get dropZoneClass() {
         let classes = 'drop-zone slds-text-align_center slds-p-around_large';
         if (this.isDragOver) {
@@ -198,21 +191,34 @@ export default class QuotationGenerator extends LightningElement {
         return classes;
     }
     
+    // Design_Type__c 값을 파싱하여 선택된 유형 목록 반환
     get selectedDesignTypes() {
-        return this.designOptions
-            .filter(opt => opt.selected)
-            .map(opt => ({
-                ...opt,
-                formattedPrice: this.formatCurrency(opt.price)
-            }));
+        if (!this.designTypeValue) {
+            return [];
+        }
+        
+        // Multi-Select Picklist는 세미콜론으로 구분
+        const types = this.designTypeValue.split(';').map(t => t.trim());
+        
+        return types.map(type => {
+            const price = this.designTypePrices[type] || 0;
+            const label = this.designTypeLabels[type] || type;
+            
+            return {
+                value: type,
+                label: label,
+                price: price,
+                formattedPrice: this.formatCurrency(price)
+            };
+        });
     }
     
+    // 제작 유형 추가 금액 합계
     get designSurcharge() {
-        return this.designOptions
-            .filter(opt => opt.selected)
-            .reduce((sum, opt) => sum + opt.price, 0);
+        return this.selectedDesignTypes.reduce((sum, type) => sum + type.price, 0);
     }
     
+    // 총액
     get totalAmount() {
         return this.productPrice + this.designSurcharge;
     }
@@ -226,8 +232,7 @@ export default class QuotationGenerator extends LightningElement {
     }
     
     get isGenerateDisabled() {
-        const hasSelectedTypes = this.designOptions.some(opt => opt.selected);
-        return !hasSelectedTypes || !this.selectedDesignId;
+        return !this.hasDesignTypes || !this.selectedDesignId;
     }
     
     // 포맷팅
@@ -236,13 +241,5 @@ export default class QuotationGenerator extends LightningElement {
             style: 'currency',
             currency: 'KRW'
         }).format(value || 0);
-    }
-    
-    // 디자인 옵션에 가격 표시 추가
-    get designOptionsWithFormattedPrice() {
-        return this.designOptions.map(opt => ({
-            ...opt,
-            labelWithPrice: `${opt.label}`
-        }));
     }
 }

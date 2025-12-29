@@ -1,0 +1,40 @@
+<template>
+    <!-- 버튼 -->
+    <template if:false={isModalOpen}>
+        <lightning-button 
+            label="견적서 생성"
+            variant="brand"
+            icon-name="doctype:pdf"
+            onclick={openModal}
+            class="slds-m-around_small">
+        </lightning-button>
+    </template>
+    
+    <!-- 모달 -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                
+                <!-- 헤더 -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+                            onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" size="small" alternative-text="Close"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">견적서 생성</h2>
+                </header>
+                
+                <!-- 바디 -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <c-quotation-generator 
+                        record-id={recordId}
+                        onquotationgenerated={handleQuotationGenerated}>
+                    </c-quotation-generator>
+                </div>
+                
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
