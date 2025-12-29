@@ -1,0 +1,40 @@
+<template>
+  <lightning-card class="profile-card">
+    <div class="card-background">
+      <div class="profile-container">
+
+        <div class="profile-header-section">
+          <div class="profile-image-wrapper">
+            <img src={avatarUrl} alt="프로필" class="profile-image" />
+          </div>
+
+          <div class="profile-name-section">
+            <h2 class="profile-name">{accountName}</h2>
+            <p class="customer-number">{caseNumber}</p>
+          </div>
+        </div>
+
+        <div class="profile-details">
+          <div class="detail-column">
+            <div class="detail-item">
+              <span class="detail-label">문의유형</span>
+              <span class="detail-value">{requestType}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">접수매장</span>
+              <span class="detail-value">{storeName}</span>
+            </div>
+          </div>
+
+          <div class="detail-column">
+            <div class="detail-item">
+              <span class="detail-label">진행상황</span>
+              <span class="detail-value">{status}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </lightning-card>
+</template>
