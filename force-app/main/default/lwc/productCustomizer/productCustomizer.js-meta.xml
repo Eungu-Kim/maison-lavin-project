@@ -2,16 +2,30 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <isExposed>true</isExposed>
+
     <targets>
         <target>lightning__FlowScreen</target>
     </targets>
+
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="selectedFamily" type="String" label="Selected Family" role="outputOnly"/>
-            <property name="selectedProductId" type="String" label="Selected Product ID" role="outputOnly"/>
-            <property name="initials" type="String" label="Initials" role="outputOnly"/>
-            <property name="selectedColor" type="String" label="Selected Color" role="outputOnly"/>
-            <property name="selectedPosition" type="String" label="Selected Position" role="outputOnly"/>
+            <property name="selectedFamily" type="String" label="Selected Family"/>
+            <property name="selectedProductId" type="String" label="Selected Product ID"/>
+            <property name="initials" type="String" label="Initials"/>
+            <property name="selectedColor" type="String" label="Selected Color"/>
+            <property name="selectedPosition" type="String" label="Selected Position"/>
+
+            <!-- 제품 선택 전 기본 이미지(선택). 비워두면 내장 SVG 사용 -->
+            <property name="defaultPreviewImageUrl"
+                      type="String"
+                      label="Default preview image URL (optional)"
+                      role="inputOnly"/>
+
+            <property name="useCustomFooter"
+                      type="Boolean"
+                      label="Use custom footer (hide Flow footer recommended)"
+                      role="inputOnly"
+                      default="true"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

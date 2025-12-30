@@ -1,164 +1,192 @@
 <template>
-    <lightning-card title="제품 커스터마이징" icon-name="custom:custom63">
-        <div class="slds-p-around_medium">
-            
-            <!-- 2단 레이아웃 -->
-            <div class="slds-grid slds-wrap slds-gutters">
-                
-                <!-- 왼쪽: 미리보기 -->
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                    <div class="preview-container">
-                        <h3 class="slds-text-heading_small slds-m-bottom_small">최종 미리보기</h3>
-                        <div class="preview-box">
-                            <template if:true={productImageUrl}>
-                                <div class="product-preview">
-                                    <img src={productImageUrl} alt="Product Preview" />
-                                    
-                                    <!-- 이니셜 오버레이 -->
-                                    <template if:true={showInitials}>
-                                        <div class={initialsOverlayClass}>
-                                            <span style={initialsStyle}>{initials}</span>
-                                        </div>
+    <!-- 화면 전체 배경(Flow 포함) -->
+    <div class="page-backdrop" aria-hidden="true"></div>
+
+    <div class="pc-shell">
+        <header class="pc-header">
+            <div>
+                <h2 class="pc-title">Masion Lavin 커스터마이징 서비스</h2>
+                <p class="pc-subtitle">
+                    <template if:true={productName}>{productName}</template>
+                    <template if:false={productName}>카테고리/제품을 선택해 옵션을 구성하세요</template>
+                </p>
+            </div>
+        </header>
+
+        <div class="pc-layout">
+            <!-- LEFT: Preview (기본 이미지 항상 표시) -->
+            <section>
+                <div class="preview-wrap">
+                    <div class="preview-stage">
+                        <template if:true={isLoadingImage}>
+                            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        </template>
+
+                        <div class="preview-canvas">
+                            <template if:true={previewImageUrl}>
+                                <img src={previewImageUrl} alt="Preview" />
+                            </template>
+                            <template if:true={showInitials}>
+                                <div class={initialsOverlayClass}>
+                                    <span class="initials-text" style={initialsStyle}>
+                                        {initialsPreview}
+                                    </span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT: Options -->
+            <section>
+                <template if:true={showErrorBanner}>
+                    <div class="error-banner">
+                        <template if:true={externalError}>
+                            <lightning-formatted-rich-text value={externalError}></lightning-formatted-rich-text>
+                        </template>
+                        <template if:false={externalError}>
+                            {internalError}
+                        </template>
+                    </div>
+                </template>
+
+                <div class="panel">
+                    <h3 class="panel-title">제품 선택</h3>
+
+                    <lightning-combobox
+                        name="category"
+                        label="카테고리"
+                        value={selectedFamily}
+                        placeholder="카테고리를 선택하세요"
+                        options={categoryOptions}
+                        onchange={handleCategoryChange}
+                        required>
+                    </lightning-combobox>
+
+                    <div class="slds-m-top_medium">
+                        <label class="slds-form-element__label"></label>
+                        <lightning-record-picker
+                            label="제품"
+                            placeholder="제품을 검색하세요"
+                            object-api-name="Product2"
+                            value={selectedProductId}
+                            filter={productFilter}
+                            onchange={handleProductSelect}>
+                        </lightning-record-picker>
+                        <p class="muted slds-m-top_x-small">선택한 카테고리로 제품을 필터링합니다.</p>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <h3 class="panel-title">커스터마이징 옵션</h3>
+                    <div class="chips">
+                        <button class="chip" data-key="initials" data-on={isInitialsActive} onclick={toggleOption} type="button">
+                            이니셜
+                        </button>
+                        <button class="chip" data-key="patch" data-on={isPatchActive} onclick={toggleOption} type="button">
+                            패치
+                        </button>
+                        <button class="chip" data-key="embroidery" data-on={isEmbroideryActive} onclick={toggleOption} type="button">
+                            자수
+                        </button>
+                        <button class="chip" data-key="stud" data-on={isStudActive} onclick={toggleOption} type="button">
+                            스터드
+                        </button>
+                    </div>
+
+                    <p class="muted slds-m-top_small">옵션을 켜면 아래 세부 설정이 열립니다.</p>
+                </div>
+
+                <!-- Initials (기본 OFF) -->
+                <template if:true={isInitialsActive}>
+                    <div class="panel">
+                        <h3 class="panel-title">이니셜 설정</h3>
+
+                        <lightning-input
+                            type="text"
+                            label="이니셜"
+                            value={initials}
+                            onchange={handleInitialsChange}
+                            max-length="10"
+                            placeholder="예: GLV"
+                            class="slds-m-bottom_small">
+                        </lightning-input>
+
+                        <div class="slds-m-bottom_small">
+                            <div class="muted slds-m-bottom_x-small">{selectedColorLabel}</div>
+
+                            <div class="swatchbar">
+                                <button class="arrowbtn" type="button" onclick={scrollSwatchesLeft} aria-label="Left">‹</button>
+
+                                <div class="swatchrail" data-id="swatchRail">
+                                    <template for:each={colorPalette} for:item="c">
+                                        <button key={c.value}
+                                                class="swatch"
+                                                style={c.style}
+                                                data-color={c.value}
+                                                data-selected={c.selected}
+                                                onclick={handleColorSwatch}
+                                                type="button"
+                                                aria-label={c.label}>
+                                        </button>
                                     </template>
                                 </div>
-                            </template>
-                            <template if:false={productImageUrl}>
-                                <div class="placeholder">
-                                    <lightning-icon icon-name="utility:image" size="large"></lightning-icon>
-                                    <p class="slds-m-top_small">제품을 선택하세요</p>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 오른쪽: 선택 옵션 -->
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
-                    
-                    <!-- 카테고리 선택 -->
-                    <div class="slds-m-bottom_medium">
-                        <lightning-combobox
-                            name="category"
-                            label="카테고리 선택"
-                            value={selectedFamily}
-                            placeholder="카테고리를 선택하세요"
-                            options={categoryOptions}
-                            onchange={handleCategoryChange}
-                            required>
-                        </lightning-combobox>
-                    </div>
-                    
-                    <!-- 제품 선택 -->
-                    <template if:true={selectedFamily}>
-                        <div class="slds-m-bottom_medium">
-                            <label class="slds-form-element__label">제품 선택</label>
-                            <lightning-record-picker
-                                label="제품"
-                                placeholder="제품을 검색하세요"
-                                object-api-name="Product2"
-                                filter={productFilter}
-                                onchange={handleProductSelect}>
-                            </lightning-record-picker>
-                        </div>
-                    </template>
-                    
-                    <!-- 커스터마이징 옵션 -->
-                    <template if:true={selectedProductId}>
-                        <div class="customization-section">
-                            <h3 class="slds-text-heading_small slds-m-bottom_small">커스터마이징 옵션</h3>
-                            
-                            <!-- 옵션 버튼들 (모두 활성화) -->
-                            <div class="option-buttons slds-m-bottom_medium">
-                                <lightning-button
-                                    label="이니셜"
-                                    variant={initialButtonVariant}
-                                    onclick={handleInitialToggle}
-                                    class="slds-m-right_x-small">
-                                </lightning-button>
-                                
-                                <lightning-button
-                                    label="패치"
-                                    variant={patchButtonVariant}
-                                    onclick={handlePatchToggle}
-                                    class="slds-m-right_x-small">
-                                </lightning-button>
-                                
-                                <lightning-button
-                                    label="자수"
-                                    variant={embroideryButtonVariant}
-                                    onclick={handleEmbroideryToggle}
-                                    class="slds-m-right_x-small">
-                                </lightning-button>
-                                
-                                <lightning-button
-                                    label="스터드"
-                                    variant={studButtonVariant}
-                                    onclick={handleStudToggle}>
-                                </lightning-button>
+
+                                <button class="arrowbtn" type="button" onclick={scrollSwatchesRight} aria-label="Right">›</button>
                             </div>
-                            
-                            <!-- 이니셜 옵션 -->
-                            <template if:true={showInitialOptions}>
-                                <div class="option-panel slds-box slds-m-bottom_medium">
-                                    <h4 class="slds-text-heading_x-small slds-m-bottom_small">이니셜 설정</h4>
-                                    
-                                    <lightning-input
-                                        type="text"
-                                        label="이니셜 입력"
-                                        value={initials}
-                                        onchange={handleInitialsChange}
-                                        max-length="10"
-                                        placeholder="예: KES"
-                                        class="slds-m-bottom_small">
-                                    </lightning-input>
-                                    
-                                    <lightning-input
-                                        type="color"
-                                        label="이니셜 색상"
-                                        value={selectedColor}
-                                        onchange={handleColorChange}
-                                        class="slds-m-bottom_small">
-                                    </lightning-input>
-                                    
-                                    <lightning-combobox
-                                        name="position"
-                                        label="이니셜 위치"
-                                        value={selectedPosition}
-                                        placeholder="위치 선택"
-                                        options={positionOptions}
-                                        onchange={handlePositionChange}>
-                                    </lightning-combobox>
-                                </div>
-                            </template>
-                            
-                            <!-- 패치 옵션 -->
-                            <template if:true={showPatchOptions}>
-                                <div class="option-panel slds-box slds-m-bottom_medium">
-                                    <h4 class="slds-text-heading_x-small slds-m-bottom_small">패치 설정</h4>
-                                    <p class="slds-text-color_weak">준비 중입니다</p>
-                                </div>
-                            </template>
-                            
-                            <!-- 자수 옵션 -->
-                            <template if:true={showEmbroideryOptions}>
-                                <div class="option-panel slds-box slds-m-bottom_medium">
-                                    <h4 class="slds-text-heading_x-small slds-m-bottom_small">자수 설정</h4>
-                                    <p class="slds-text-color_weak">준비 중입니다</p>
-                                </div>
-                            </template>
-                            
-                            <!-- 스터드 옵션 -->
-                            <template if:true={showStudOptions}>
-                                <div class="option-panel slds-box slds-m-bottom_medium">
-                                    <h4 class="slds-text-heading_x-small slds-m-bottom_small">스터드 설정</h4>
-                                    <p class="slds-text-color_weak">준비 중입니다</p>
-                                </div>
-                            </template>
                         </div>
-                    </template>
-                    
-                </div>
-            </div>
+
+                        <div class="slds-m-bottom_small">
+                            <div class="muted slds-m-bottom_x-small">위치</div>
+                            <div class="segmented" role="radiogroup">
+                                <button class="segbtn" data-value="center-top" data-selected={isPosTop} onclick={handlePositionButton} type="button">
+                                    상단
+                                </button>
+                                <button class="segbtn" data-value="center-bottom" data-selected={isPosBottom} onclick={handlePositionButton} type="button">
+                                    하단
+                                </button>
+                            </div>
+                        </div>
+
+                        <p class="muted slds-m-top_x-small">선택한 옵션(텍스트/색상/위치)을 반영합니다.</p>
+                    </div>
+                </template>
+
+                <template if:true={isPatchActive}>
+                    <div class="panel">
+                        <h3 class="panel-title">패치 설정</h3>
+                        <p class="muted">패치 SKU/이미지/좌표 데이터가 준비되면 “선택 → 프리뷰 오버레이”로 확장 가능합니다.</p>
+                    </div>
+                </template>
+
+                <template if:true={isEmbroideryActive}>
+                    <div class="panel">
+                        <h3 class="panel-title">자수 설정</h3>
+                        <p class="muted">자수는 옵션 조합(실 색/폰트/위치/문구)만 정해지면 이니셜 구조로 구현됩니다.</p>
+                    </div>
+                </template>
+
+                <template if:true={isStudActive}>
+                    <div class="panel">
+                        <h3 class="panel-title">스터드 설정</h3>
+                        <p class="muted">스터드는 배치 좌표(패턴) 데이터가 있으면 오버레이로 구현 가능합니다.</p>
+                    </div>
+                </template>
+
+                <template if:true={useCustomFooter}>
+                    <div class="footerbar">
+                        <button class="btn" type="button" onclick={handleReset}>재설정</button>
+
+                        <div class="footer-actions">
+                            <button class="btn" type="button" onclick={handleBack} disabled={disableBack}>이전</button>
+                            <button class="btn btn-primary" type="button" onclick={handleNextOrFinish} disabled={disableNextFinish}>
+                                {nextFinishLabel}
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </section>
         </div>
-    </lightning-card>
+    </div>
 </template>
