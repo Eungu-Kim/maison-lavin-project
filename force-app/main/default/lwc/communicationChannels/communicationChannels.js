@@ -1,6 +1,7 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';  // ← 추가!
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { NavigationMixin } from 'lightning/navigation';
 
 // Account 필드
 const FIELDS = [
@@ -9,7 +10,7 @@ const FIELDS = [
     'Account.Email_Opt_In__c'
 ];
 
-export default class CommunicationChannels extends LightningElement {
+export default class CommunicationChannels extends NavigationMixin(LightningElement) {
     @api recordId;
 
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS })
@@ -68,11 +69,22 @@ export default class CommunicationChannels extends LightningElement {
 
     // Email 클릭
     handleEmailClick() {
+        // 수신 거부 체크 로직 유지
         if (!this.isEmailOptIn) {
             this.showToast('수신거부', '고객이 Email 수신을 거부했습니다.', 'warning');
             return;
         }
-        this.showToast('Email 작성', 'Email을 작성합니다.', 'success');
+
+        // 3. 표준 이메일 작성창 호출
+        this[NavigationMixin.Navigate]({
+            type: 'standard__quickAction',
+            attributes: {
+                apiName: 'Global.SendEmail' // Salesforce 표준 이메일 액션 API명
+            },
+            state: {
+                recordId: this.recordId // 현재 레코드 ID를 넘겨주어 '관련 항목'이 자동 지정되게 함
+            }
+        });
     }
 
     // Toast 메시지 표시
