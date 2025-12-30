@@ -1,161 +1,159 @@
 <template>
-    <lightning-card title="주문 확인" icon-name="standard:orders">
-        
-        <div class="slds-p-around_medium">
-            
-            <div class="slds-grid slds-wrap slds-gutters">
-                
-                <!-- 왼쪽: 최종 미리보기 -->
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2">
-                    <div class="preview-section">
-                        <h3 class="slds-text-heading_small slds-m-bottom_small">최종 미리보기</h3>
-                        
-                        <div class="preview-container">
-                            <!-- 제품 이미지 -->
+    <div class="page-backdrop" aria-hidden="true"></div>
+
+    <div class="cr-shell">
+        <header class="cr-header">
+            <div class="cr-header-left">
+                <div>
+                    <h2 class="cr-title">주문 확인</h2>
+                    <p class="cr-subtitle">선택하신 내용과 픽업 매장을 확인하세요</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="cr-layout">
+            <!-- LEFT: Preview -->
+            <section>
+                <div class="preview-wrap">
+                    <div class="preview-stage">
+                        <template if:true={isLoadingImage}>
+                            <div class="spinner-overlay">
+                                <lightning-spinner alternative-text="로딩 중" size="small"></lightning-spinner>
+                            </div>
+                        </template>
+
+                        <div class="preview-canvas">
                             <template if:true={productImageUrl}>
-                                <img 
-                                    src={productImageUrl} 
-                                    alt="제품 이미지"
-                                    class="product-image"/>
-                                
-                                <!-- 이니셜 오버레이 -->
-                                <template if:true={showInitials}>
-                                    <div class="initials-overlay" style={initialsStyleString}>
-                                        {initials}
-                                    </div>
-                                </template>
+                                <img src={productImageUrl} alt="제품 이미지" class="product-image" />
                             </template>
-                            
-                            <!-- 이미지 로딩 중 -->
+
                             <template if:false={productImageUrl}>
-                                <div class="image-placeholder">
-                                    <lightning-spinner alternative-text="로딩 중" size="small"></lightning-spinner>
+                                <div class="preview-empty">제품 이미지가 준비되면 표시됩니다</div>
+                            </template>
+
+                            <template if:true={showInitials}>
+                                <div class={initialsOverlayClass}>
+                                    <span class="initials-text" style={initialsStyle}>
+                                        {initialsPreview}
+                                    </span>
                                 </div>
                             </template>
                         </div>
                     </div>
                 </div>
-                
-                <!-- 오른쪽: 선택 내용 + 매장 선택 -->
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2">
-                    
-                    <!-- 선택 내용 확인 섹션 -->
-                    <div class="review-section slds-m-bottom_large">
-                        <h3 class="slds-text-heading_small slds-m-bottom_medium">선택하신 내용</h3>
-                        
-                        <!-- 카테고리 -->
-                        <div class="review-item slds-m-bottom_small">
-                            <span class="review-label">카테고리</span>
-                            <span class="review-value">{selectedFamily}</span>
+            </section>
+
+            <!-- RIGHT: Review + Store -->
+            <section>
+                <div class="panel">
+                    <h3 class="panel-title">선택하신 내용</h3>
+
+                    <div class="rows">
+                        <div class="row">
+                            <span class="row-label">카테고리</span>
+                            <span class="row-value">{selectedFamily}</span>
                         </div>
-                        
-                        <!-- 제품명 -->
-                        <div class="review-item slds-m-bottom_small">
-                            <span class="review-label">제품</span>
-                            <span class="review-value">{productName}</span>
+
+                        <div class="row">
+                            <span class="row-label">제품</span>
+                            <span class="row-value">{productName}</span>
                         </div>
-                        
-                        <!-- 이니셜 -->
-                        <div class="review-item slds-m-bottom_small">
-                            <span class="review-label">이니셜 문구</span>
-                            <span class="review-value">{initials}</span>
+
+                        <div class="row">
+                            <span class="row-label">이니셜 문구</span>
+                            <span class="row-value">{initialsDisplay}</span>
                         </div>
-                        
-                        <!-- 색상 -->
-                        <div class="review-item slds-m-bottom_small">
-                            <span class="review-label">이니셜 색상</span>
-                            <div class="color-preview" style={colorPreviewStyle}></div>
+
+                        <div class="row">
+                            <span class="row-label">이니셜 색상</span>
+                            <span class="row-value">
+                                <span class="color-chip">
+                                    <span class="color-dot" style={colorDotStyle}></span>
+                                    <span>{colorLabel}</span>
+                                </span>
+                            </span>
                         </div>
-                        
-                        <!-- 위치 -->
-                        <div class="review-item slds-m-bottom_large">
-                            <span class="review-label">이니셜 위치</span>
-                            <span class="review-value">{positionLabel}</span>
+
+                        <div class="row">
+                            <span class="row-label">이니셜 위치</span>
+                            <span class="row-value">{positionLabel}</span>
                         </div>
                     </div>
-                    
-                    <!-- 픽업 매장 선택 섹션 -->
-                    <div class="store-selection">
-                        <h3 class="slds-text-heading_small slds-m-bottom_small">픽업 매장 선택</h3>
-                        
-                        <!-- 매장 선택 버튼 -->
-                        <template if:false={hasStoreSelected}>
-                            <div class="store-select-button" onclick={openStoreModal}>
-                                <div class="store-button-content">
-                                    <lightning-icon icon-name="standard:location" size="small"></lightning-icon>
-                                    <div class="store-button-text">
-                                        <div class="store-button-title">매장 선택</div>
-                                        <div class="store-button-subtitle">픽업 가능한 매장 선택</div>
-                                    </div>
-                                    <lightning-icon icon-name="utility:chevronright" size="small"></lightning-icon>
+                </div>
+
+                <div class="panel">
+                    <h3 class="panel-title">픽업 매장 선택</h3>
+                    <p class="hint">픽업 가능한 매장을 선택하세요.</p>
+
+                    <template if:false={hasStoreSelected}>
+                        <div class="action-card" onclick={openStoreModal}>
+                            <div class="action-row">
+                                <lightning-icon icon-name="standard:location" size="small"></lightning-icon>
+                                <div class="action-text">
+                                    <div class="action-title">매장 선택</div>
+                                    <div class="action-sub">픽업 가능한 매장 선택</div>
                                 </div>
+                                <lightning-icon class="chev" icon-name="utility:chevronright" size="x-small"></lightning-icon>
                             </div>
-                        </template>
-                        
-                        <!-- 선택된 매장 표시 -->
-                        <template if:true={hasStoreSelected}>
-                            <div class="store-selected" onclick={openStoreModal}>
-                                <div class="store-selected-content">
-                                    <lightning-icon icon-name="standard:location" size="small"></lightning-icon>
-                                    <div class="store-selected-info">
-                                        <div class="store-selected-name">{storeName}</div>
-                                        <div class="store-selected-status">
+                        </div>
+                    </template>
+
+                    <template if:true={hasStoreSelected}>
+                        <div class="action-card selected" onclick={openStoreModal}>
+                            <div class="action-row">
+                                <lightning-icon icon-name="standard:location" size="small"></lightning-icon>
+                                <div class="action-text">
+                                    <div class="action-title">{storeName}</div>
+                                    <div class="action-sub">
+                                        <span class="store-status">
                                             <span class="status-dot"></span>
                                             매장 - 픽업 가능
-                                        </div>
+                                        </span>
                                     </div>
-                                    <lightning-icon icon-name="utility:chevronright" size="small"></lightning-icon>
                                 </div>
+                                <lightning-icon class="chev" icon-name="utility:chevronright" size="x-small"></lightning-icon>
                             </div>
-                        </template>
-                    </div>
-                    
+                        </div>
+                    </template>
                 </div>
-                
-            </div>
-            
+            </section>
         </div>
-        
-        <!-- 매장 선택 모달 -->
+
+        <!-- Store Modal -->
         <template if:true={isStoreModalOpen}>
-            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" aria-modal="true">
                 <div class="slds-modal__container">
-                    
-                    <!-- 모달 헤더 -->
                     <header class="slds-modal__header">
-                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
-                                onclick={closeStoreModal}>
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                onclick={closeStoreModal} title="Close">
                             <lightning-icon icon-name="utility:close" size="small" alternative-text="Close"></lightning-icon>
                         </button>
                         <h2 class="slds-text-heading_medium">매장 선택하기</h2>
                     </header>
-                    
-                    <!-- 모달 바디 -->
+
                     <div class="slds-modal__content slds-p-around_medium">
-                        
-                        <!-- 매장 목록 -->
                         <div class="store-list">
                             <template if:true={hasStores}>
-                                <template for:each={stores} for:item="store">
-                                    <div key={store.Id} 
-                                         class="store-item"
+                                <template for:each={storesVM} for:item="store">
+                                    <div key={store.Id}
+                                         class={store.cardClass}
                                          data-id={store.Id}
                                          onclick={handleStoreClick}>
-                                        <div class="store-item-content">
-                                            <div class="store-item-info">
-                                                <div class="store-item-name">{store.Name}</div>
-                                                <div class="store-item-address">{store.Store_Address__c}</div>
-                                            </div>
-                                            <div class="store-item-status">
-                                                <span class="status-dot"></span>
-                                                <span class="status-text">매장 - 픽업 가능</span>
-                                            </div>
+                                        <div class="store-name">{store.Name}</div>
+                                        <div class="store-addr">{store.Store_Address__c}</div>
+
+                                        <div class="store-meta">
+                                            <template if:true={store.canPickup}>
+                                                <span class="store-status">
+                                                    <span class="status-dot"></span>
+                                                    매장 - 픽업 가능
+                                                </span>
+                                            </template>
                                         </div>
                                     </div>
                                 </template>
                             </template>
-                            
-                            <!-- 매장 없음 -->
+
                             <template if:false={hasStores}>
                                 <div class="slds-text-align_center slds-p-around_large">
                                     <lightning-icon icon-name="utility:location" size="large"></lightning-icon>
@@ -163,13 +161,25 @@
                                 </div>
                             </template>
                         </div>
-                        
                     </div>
-                    
                 </div>
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
         </template>
-        
-    </lightning-card>
+
+        <!-- ===== Flow Footer 대체 (이전/다음·완료) ===== -->
+        <div class="footerbar">
+            <span class="hint">
+                <template if:true={hasStoreSelected}>매장 선택 완료</template>
+                <template if:false={hasStoreSelected}>다음으로 진행하려면 매장을 선택하세요</template>
+            </span>
+
+            <div class="footer-actions">
+                <button class="btn" type="button" onclick={handleBack} disabled={disableBack}>이전</button>
+                <button class="btn btn-primary" type="button" onclick={handleNextOrFinish} disabled={disableNextFinish}>
+                    {nextFinishLabel}
+                </button>
+            </div>
+        </div>
+    </div>
 </template>

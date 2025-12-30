@@ -2,19 +2,21 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <isExposed>true</isExposed>
+
     <targets>
         <target>lightning__FlowScreen</target>
     </targets>
+
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <!-- Input: Screen 1에서 받아온 값 -->
+            <!-- Input -->
             <property name="selectedFamily" type="String" label="Selected Family" role="inputOnly"/>
             <property name="selectedProductId" type="String" label="Selected Product ID" role="inputOnly"/>
             <property name="initials" type="String" label="Initials" role="inputOnly"/>
             <property name="selectedColor" type="String" label="Selected Color" role="inputOnly"/>
             <property name="selectedPosition" type="String" label="Selected Position" role="inputOnly"/>
-            
-            <!-- Output: 선택한 매장 -->
+
+            <!-- Output -->
             <property name="selectedStoreId" type="String" label="Selected Store ID" role="outputOnly"/>
         </targetConfig>
     </targetConfigs>
