@@ -47,12 +47,16 @@ public with sharing class ProductCustomizerController {
     // 모든 제품 목록 가져오기
     @AuraEnabled(cacheable=true)
     public static List<Product2> getAvailableProducts() {
-        return [
-            SELECT Id, Name, ProductCode, Description, Primary_Image_Id__c
-            FROM Product2 
-            WHERE IsActive = true
-            ORDER BY Name
-        ];
+        try {
+            return [
+                SELECT Id, Name, ProductCode, Description, Primary_Image_Id__c
+                FROM Product2 
+                WHERE IsActive = true
+                ORDER BY Name
+            ];
+        } catch (Exception e) {
+            throw new AuraHandledException('제품 목록을 불러올 수 없습니다: ' + e.getMessage());
+        }
     }
 
     // 선택 가능한 매장 목록 조회

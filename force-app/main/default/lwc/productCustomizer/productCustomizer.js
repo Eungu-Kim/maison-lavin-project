@@ -1,5 +1,6 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import {
     FlowAttributeChangeEvent,
@@ -235,7 +236,17 @@ export default class ProductCustomizer extends LightningElement {
         this.isLoadingImage = true;
         getProductImage({ productId: this.selectedProductId })
             .then(url => { this.productImageUrl = url || ''; })
-            .catch(() => { this.productImageUrl = ''; })
+            .catch((error) => {
+                this.productImageUrl = '';
+
+                const msg =
+                    error?.body?.message ||
+                    error?.body?.pageErrors?.[0]?.message ||
+                    error?.message ||
+                    '제품 이미지를 불러오는 중 오류가 발생했습니다.';
+
+                this.showToast('오류', msg, 'error');
+            })
             .finally(() => { this.isLoadingImage = false; });
     }
 
@@ -359,5 +370,15 @@ export default class ProductCustomizer extends LightningElement {
             if (canNext) this.dispatchEvent(new FlowNavigationNextEvent());
             else this.dispatchEvent(new FlowNavigationFinishEvent());
         }, 0);
+    }
+
+    showToast(title, message, variant = 'error') {
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title,
+                message,
+                variant
+            })
+        );
     }
 }
