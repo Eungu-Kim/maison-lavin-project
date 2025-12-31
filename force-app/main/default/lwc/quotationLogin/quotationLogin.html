@@ -1,0 +1,38 @@
+<template>
+  <div class="slds-box slds-m-around_medium">
+    <h2 class="slds-text-heading_medium slds-m-bottom_medium">MY MAISON 로그인</h2>
+
+    <lightning-input
+      type="email"
+      label="이메일"
+      value={email}
+      onchange={handleEmailChange}
+      required>
+    </lightning-input>
+
+    <lightning-input
+      type="password"
+      label="비밀번호"
+      value={password}
+      onchange={handlePasswordChange}
+      required>
+    </lightning-input>
+
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-top_small">{error}</div>
+    </template>
+
+    <div class="slds-m-top_medium">
+      <lightning-button
+        variant="brand"
+        label="로그인 후 견적서 확인"
+        onclick={handleLogin}
+        disabled={loading}>
+      </lightning-button>
+
+      <template if:true={loading}>
+        <lightning-spinner size="small" alternative-text="처리 중"></lightning-spinner>
+      </template>
+    </div>
+  </div>
+</template>
