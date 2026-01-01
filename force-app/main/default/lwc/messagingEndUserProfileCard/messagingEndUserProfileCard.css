@@ -1,0 +1,86 @@
+:host {
+    --card-border-radius: 16px;
+    --footer-bg: #ece6cc;
+    --divider-color: #b0ab96;
+}
+
+.wide-card-container {
+    background: #ffffff;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-section {
+    display: flex;
+    padding: 24px;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-image-wrapper { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #dec552; overflow: hidden; flex-shrink: 0; }
+.profile-image { width: 100%; height: 100%; object-fit: cover; }
+.name-section { flex-shrink: 0; min-width: 150px; }
+.profile-name { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+.customer-number { font-size: 14px; color: #6c757d; }
+.details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; }
+.detail-item { display: flex; flex-direction: column; gap: 4px; }
+.detail-label { font-size: 13px; color: #868e96; font-weight: 600; }
+.detail-value { font-size: 14px; color: #343a40; font-weight: 500; }
+
+/* --- 하단 채널 영역 최종 디자인 --- */
+.channels-footer {
+    display: flex;
+    background-color: var(--footer-bg);
+    height: 60px;
+    align-items: stretch;
+}
+
+.channel-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    padding: 0 10px;
+}
+
+.vertical-divider {
+    width: 2px;
+    background-color: var(--divider-color);
+    margin: 10px 0;
+}
+
+.icon-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.channel-icon {
+    --sds-c-icon-color-foreground-default: #57474a;
+}
+
+
+.indicator {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2.5px solid var(--footer-bg);
+}
+
+.indicator.green { background-color: #54c975; }
+.indicator.red { background-color: #ff6060; }
+
+.channel-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a4a4a;
+}
