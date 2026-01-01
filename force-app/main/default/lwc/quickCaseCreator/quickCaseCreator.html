@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="신규 문의 생성" icon-name="standard:case">
+        <div class="slds-p-horizontal_small">
+            <template if:true={isLoading}>
+                <lightning-spinner alt-name="Loading" size="small"></lightning-spinner>
+            </template>
+
+            <lightning-record-edit-form 
+                object-api-name="Case" 
+                onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+
+                <lightning-messages></lightning-messages>
+
+                <lightning-input-field field-name="Big_Request_Type__c" required></lightning-input-field>
+                <lightning-input-field field-name="RequestType__c" required></lightning-input-field>
+                <lightning-input-field field-name="Priority" required></lightning-input-field>
+                <lightning-input-field field-name="Subject" required></lightning-input-field>
+                <lightning-input-field field-name="Description"></lightning-input-field>
+                <div class="slds-m-top_medium slds-text-align_right">
+                    <lightning-button variant="brand" type="submit" label="생성"></lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>
