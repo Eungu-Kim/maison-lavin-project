@@ -1,0 +1,61 @@
+<template>
+    <div class="wide-card-container">
+        <div class="info-section">
+            <div class="profile-image-wrapper">
+                <img src={avatarUrl} alt="프로필" class="profile-image">
+            </div>
+            <div class="name-section">
+                <h2 class="profile-name">{accountName}</h2>
+                <p class="customer-number">{customerNumber}</p>
+            </div>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">마지막 연락일</span>
+                    <span class="detail-value">{lastInteractionDate}</span>
+                    <span class="detail-label slds-m-top_x-small">담당 매장</span>
+                    <span class="detail-value">{mainStore}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">마지막 구매일</span>
+                    <span class="detail-value">{lastPurchaseDate}</span>
+                    <span class="detail-label slds-m-top_x-small">생일</span>
+                    <span class="detail-value">{birthdate}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">주소</span>
+                    <span class="detail-value">{address}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="channels-footer">
+            <div class="channel-section" onclick={handleTelephoneClick}>
+                <div class="icon-group">
+                    <lightning-icon icon-name="utility:call" size="x-small" class="channel-icon"></lightning-icon>
+                    <span class={telephoneIndicatorClass}></span>
+                </div>
+                <span class="channel-label">Telephone</span>
+            </div>
+
+            <div class="vertical-divider"></div>
+
+            <div class="channel-section" onclick={handleSMSClick}>
+                <div class="icon-group">
+                    <lightning-icon icon-name="utility:sms" size="x-small" class="channel-icon"></lightning-icon>
+                    <span class={smsIndicatorClass}></span>
+                </div>
+                <span class="channel-label">SMS</span>
+            </div>
+
+            <div class="vertical-divider"></div>
+
+            <div class="channel-section" onclick={handleEmailClick}>
+                <div class="icon-group">
+                    <lightning-icon icon-name="utility:email" size="x-small" class="channel-icon"></lightning-icon>
+                    <span class={emailIndicatorClass}></span>
+                </div>
+                <span class="channel-label">Email</span>
+            </div>
+        </div>
+    </div>
+</template>
