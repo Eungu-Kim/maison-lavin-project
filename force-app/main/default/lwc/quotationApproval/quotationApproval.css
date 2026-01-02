@@ -1,0 +1,87 @@
+/* 기본 배경 및 폰트 */
+.main-container {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: 'Pretendard', sans-serif;
+}
+
+/* 카드 디자인 */
+.lavin-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 20px; /* 패딩을 줄여서 버튼이 더 길어질 공간 확보 */
+    height: 100%;
+    border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+}
+
+/* iframe 영역 */
+.iframe-wrapper {
+    width: 100%;
+    height: 700px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    margin-top: 1rem;
+}
+
+/* 제목 및 정보 텍스트 */
+.section-title { font-size: 1.25rem; font-weight: 700; color: #111; margin-bottom: 1.5rem; border-bottom: 2px solid #111; padding-bottom: 12px; }
+.info-group { flex-grow: 1; }
+.info-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #f0f0f0; padding-bottom: 12px; }
+.info-row:last-child { border-bottom: none; }
+.info-label { color: #666; font-weight: 500; }
+.info-value { color: #111; font-weight: 700; font-size: 1.05rem; }
+
+/* ✅ 버튼 컨테이너: 꽉 채우기 */
+.button-container-tight {
+    display: flex;
+    width: 100%;
+    gap: 8px; /* 버튼 사이 간격 조금 넉넉하게 8px (붙이려면 2~4px로 변경) */
+    margin-top: 2rem;
+}
+
+.btn-wrapper {
+    flex: 1; /* 50:50 비율 */
+}
+
+/* ✅✅ [핵심] 버튼을 물리적으로 키우는 스타일 ✅✅ */
+.big-btn {
+    width: 100%;
+    display: block;
+
+    /* 1. 버튼 자체의 높이(두께)를 강제로 60px로 만듭니다 */
+    --sds-c-button-sizing-min-height: 60px; 
+    
+    /* 2. 글자도 수직 중앙 정렬되도록 높이 맞춤 */
+    --sds-c-button-line-height: 60px;
+    
+    /* 3. 내부 색상 영역도 100%로 확장 */
+    --sds-c-button-width: 100%;
+
+    /* 4. 폰트 크기 키움 */
+    font-size: 1.2rem; 
+    font-weight: 700;
+}
+
+/* 검정 버튼 (승인) */
+.btn-black {
+    --sds-c-button-brand-color-background: #111111;
+    --sds-c-button-brand-color-border: #111111;
+    --sds-c-button-brand-color-background-hover: #333333;
+    --sds-c-button-brand-color-border-hover: #333333;
+    --sds-c-button-radius-border: 8px;
+    --sds-c-button-text-color: #ffffff;
+}
+
+/* 흰색 버튼 (반려) */
+.btn-white {
+    --sds-c-button-neutral-color-background: #ffffff;
+    --sds-c-button-neutral-color-border: #dddddd;
+    --sds-c-button-text-color: #111111;
+    --sds-c-button-neutral-color-background-hover: #f9f9f9;
+    --sds-c-button-radius-border: 8px;
+}
