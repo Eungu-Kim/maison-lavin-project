@@ -5,6 +5,7 @@ import getOpportunityForApproval from '@salesforce/apex/QuotationApprovalService
 import approveQuotation from '@salesforce/apex/QuotationApprovalService.approveQuotation';
 import rejectQuotation from '@salesforce/apex/QuotationApprovalService.rejectQuotation';
 
+// LostReason__c picklist values
 import getLostReasonPicklistValues from '@salesforce/apex/QuotationApprovalService.getLostReasonPicklistValues';
 
 export default class QuotationApproval extends LightningElement {
@@ -15,6 +16,7 @@ export default class QuotationApproval extends LightningElement {
   @track showReject = false;
   @track rejectReason = '';
 
+  // picklist options
   @track lostReasonOptions = [];
   @track lostReasonLoading = false;
 
@@ -27,24 +29,21 @@ export default class QuotationApproval extends LightningElement {
     this.load();
   }
 
+  // 커뮤니티 basePath(/v1) 자동 추출
+  get communityBasePath() {
+    const p = window.location.pathname; // 예: /v1/s/quotationapproval
+    const idx = p.indexOf('/s/');
+    return idx >= 0 ? p.substring(0, idx) : '';
+  }
+
+  // vf.force.com 링크 대신, 같은 도메인(my.site.com)의 /v1/apex/QuotationPDF 로 강제한다
+  get resolvedPdfUrl() {
+    if (!this.oppId) return '';
+    return `${window.location.origin}${this.communityBasePath}/apex/QuotationPDF?id=${this.oppId}`;
+  }
+
   get noPdf() {
     return !this.oppId;
-  }
-
-  get vfHost() {
-    const host = window.location.host;
-    const parts = host.split('.');
-    if (parts.length < 2) return '';
-    const myDomain = parts[0];
-    const instance = parts[1];
-    return `${myDomain}--c.${instance}.vf.force.com`;
-  }
-
-  get quotationPdfUrl() {
-    if (!this.oppId) return '';
-    const vfHost = this.vfHost;
-    if (!vfHost) return '';
-    return `https://${vfHost}/apex/QuotationPDF?id=${this.oppId}`;
   }
 
   async load() {
@@ -64,8 +63,9 @@ export default class QuotationApproval extends LightningElement {
     }
   }
 
+  // 새탭도 같은 도메인 URL로 연다
   openPdfInNewTab = () => {
-    const url = this.quotationPdfUrl;
+    const url = this.resolvedPdfUrl;
     if (!url) {
       this.toast('오류', '견적서 URL을 만들 수 없습니다.', 'error');
       return;
@@ -86,10 +86,12 @@ export default class QuotationApproval extends LightningElement {
     }
   }
 
+  // 반려 모달 열 때 picklist 로드
   async openRejectModal() {
     this.rejectReason = '';
     this.showReject = true;
 
+    // 이미 로드해두었다면 재호출 안 함
     if (this.lostReasonOptions && this.lostReasonOptions.length > 0) return;
 
     this.lostReasonLoading = true;
@@ -111,6 +113,7 @@ export default class QuotationApproval extends LightningElement {
     this.showReject = false;
   }
 
+  // combobox는 event.detail.value
   handleRejectReasonChange(e) {
     this.rejectReason = e.detail.value;
   }
