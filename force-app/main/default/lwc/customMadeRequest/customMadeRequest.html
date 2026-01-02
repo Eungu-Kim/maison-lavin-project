@@ -1,40 +1,81 @@
 <template>
-  <div class="slds-box slds-m-around_medium">
-    <h2 class="slds-text-heading_medium slds-m-bottom_medium">주문제작 신청</h2>
+  <section class="cm-shell">
+    <div class="cm-layout">
+      <!-- LEFT: 검은 영역 (이미지는 나중에 CSS에서 background-image만 넣으면 됨) -->
+      <aside class="cm-left" aria-hidden="true">
+        <div class="cm-left-bg"></div>
+        <div class="cm-left-overlay"></div>
+      </aside>
 
-    <lightning-input
-      type="email"
-      name="email"
-      label="이메일"
-      value={email}
-      onchange={handleChange}
-      required>
-    </lightning-input>
+      <!-- RIGHT: 로그인 패널 -->
+      <main class="cm-right">
+        <div class="cm-right-inner">
+          <h1 class="cm-title">제품 커스터마이징 서비스</h1>
 
-    <lightning-input
-      type="password"
-      name="password"
-      label="비밀번호"
-      value={password}
-      onchange={handleChange}
-      required>
-    </lightning-input>
+          <!-- ✅ 로그인 밑 문구(하이엔드 톤) -->
+          <div class="cm-copy">
+            <p class="cm-copy-lead">
+              <br><br>메종라빈 커스터마이징 서비스는 한 가지 선택에서 시작합니다. <br> 이니셜과 자수, 하드웨어 피니시까지, 디테일을 정교하게 조합해 단 하나의 시그니처를 완성합니다.
+            </p>
+            <p class="cm-copy-sub">
+            <em>로그인 후 주문제작 신청을 진행할 수 있습니다.</em>
+            </p>
+          </div>
 
-    <template if:true={error}>
-      <div class="slds-text-color_error slds-m-top_small">{error}</div>
-    </template>
+          <!-- 입력 폼 영역(스크린샷처럼 아래쪽에 배치) -->
+          <div class="cm-form">
+            <div class="cm-required">필수입력사항 *</div>
 
-    <div class="slds-m-top_medium">
-      <lightning-button
-        variant="brand"
-        label="주문신청"
-        onclick={handleOrderRequest}
-        disabled={loading}>
-      </lightning-button>
+            <div class="cm-field">
+              <label class="cm-label" for="cmEmail">이메일 주소로 로그인 하기 *</label>
+              <input
+                id="cmEmail"
+                class="cm-input"
+                type="email"
+                name="email"
+                value={email}
+                onchange={handleChange}
+                required
+              />
+            </div>
 
-      <template if:true={loading}>
-        <lightning-spinner size="small" alternative-text="처리 중"></lightning-spinner>
-      </template>
+            <div class="cm-field">
+              <label class="cm-label" for="cmPassword">비밀번호 *</label>
+              <input
+                id="cmPassword"
+                class="cm-input"
+                type="password"
+                name="password"
+                value={password}
+                onchange={handleChange}
+                required
+              />
+              <a class="cm-link" href="javascript:void(0)">비밀번호 찾기</a>
+            </div>
+
+            <template if:true={error}>
+              <div class="cm-error" role="alert" aria-live="polite">{error}</div>
+            </template>
+
+            <div class="cm-actions">
+              <button
+                class="cm-cta"
+                type="button"
+                onclick={handleOrderRequest}
+                disabled={loading}
+              >
+                주문제작 신청
+              </button>
+            </div>
+
+            <template if:true={loading}>
+              <div class="cm-loading">
+                <lightning-spinner size="small" alternative-text="처리 중"></lightning-spinner>
+              </div>
+            </template>
+          </div>
+        </div>
+      </main>
     </div>
-  </div>
+  </section>
 </template>

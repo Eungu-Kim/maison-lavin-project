@@ -68,8 +68,6 @@ public with sharing class ExperienceLeadController {
             l.Company = 'Individual';
         }
 
-        l.Status = '리드 유입';
-
         l.Shipping_Full_Address__c = String.isBlank(shippingFullAddress)
             ? null : shippingFullAddress.trim();
         l.City_District__c = String.isBlank(cityDistrict)
@@ -87,5 +85,31 @@ public with sharing class ExperienceLeadController {
         } catch (DmlException e) {
             throw new AuraHandledException(e.getDmlMessage(0));
         }
+    }
+
+    private static String getLeadStatusValueByLabel(String targetLabel) {
+        Schema.DescribeFieldResult d = Lead.Status.getDescribe();
+
+        // 1) 라벨이 정확히 일치하고 활성인 값 반환
+        for (Schema.PicklistEntry pe : d.getPicklistValues()) {
+            if (pe.isActive() && pe.getLabel() == targetLabel) {
+                return pe.getValue();
+            }
+        }
+
+        // 2) 못 찾으면 default value로 fallback
+        for (Schema.PicklistEntry pe : d.getPicklistValues()) {
+            if (pe.isActive() && pe.isDefaultValue()) {
+                return pe.getValue();
+            }
+        }
+
+        // 3) 그래도 없으면 첫번째 active
+        for (Schema.PicklistEntry pe : d.getPicklistValues()) {
+            if (pe.isActive()) return pe.getValue();
+        }
+
+        // 4) 진짜로 없으면 에러
+        throw new AuraHandledException('리드 상태(Lead Status) 설정을 확인해주세요. (활성 상태 값이 없습니다)');
     }
 }

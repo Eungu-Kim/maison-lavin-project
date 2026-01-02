@@ -1,0 +1,122 @@
+<template>
+  <div class="slds-box slds-m-around_medium">
+    <div class="slds-text-heading_medium slds-m-bottom_small">
+      견적서 확인 및 승인
+    </div>
+
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="로딩 중" size="medium"></lightning-spinner>
+    </template>
+
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-vertical_small">{error}</div>
+    </template>
+
+    <template if:true={opp}>
+      <div class="slds-text-body_regular slds-m-bottom_small">
+        <div><b>주문번호</b>: {opp.orderNumber}</div>
+        <div><b>현재 상태</b>: {opp.stageName}</div>
+      </div>
+
+      <div class="slds-grid slds-wrap slds-gutters">
+        <!-- LEFT -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_7-of-12">
+          <div class="slds-box slds-theme_default" style="height: 70vh;">
+            <template if:true={resolvedPdfUrl}>
+              <!-- VF 도메인은 iframe에서 막힐 수 있음: 그래도 시도 -->
+              <iframe
+                title="quotation-pdf"
+                src={resolvedPdfUrl}
+                style="width:100%;height:100%;border:0;"
+              ></iframe>
+            </template>
+
+            <template if:false={resolvedPdfUrl}>
+              <div class="slds-text-color_error">
+                견적서 URL이 없습니다. (Quotation_PDF_URL__c / Quotation_PDF__c / Quotation_Login_URL__c 확인)
+              </div>
+            </template>
+          </div>
+
+          <div class="slds-m-top_small">
+            <lightning-button
+              variant="neutral"
+              label="견적서 새 탭으로 열기"
+              onclick={openPdfInNewTab}
+              disabled={noPdf}
+            ></lightning-button>
+
+            <template if:true={resolvedPdfUrl}>
+              <div class="slds-m-top_x-small slds-text-body_small slds-text-color_weak">
+                URL: {resolvedPdfUrl}
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+          <div class="slds-box slds-theme_default">
+            <div class="slds-text-heading_small slds-m-bottom_small">
+              승인/반려
+            </div>
+
+            <lightning-button
+              variant="brand"
+              label="승인"
+              onclick={handleApprove}
+              class="slds-m-right_small"
+              disabled={actionDisabled}
+            ></lightning-button>
+
+            <lightning-button
+              variant="destructive"
+              label="반려"
+              onclick={openRejectModal}
+              disabled={actionDisabled}
+            ></lightning-button>
+
+            <div class="slds-m-top_medium slds-text-body_small slds-text-color_weak">
+              승인: StageName → “견적승인”<br/>
+              반려: LostReason__c 저장 + StageName → “Closed”
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Reject Modal -->
+  <template if:true={showReject}>
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <h2 class="slds-text-heading_medium">반려 사유 선택</h2>
+        </header>
+
+        <div class="slds-modal__content slds-p-around_medium">
+          <!-- ✅ textarea → picklist combobox 로 교체 -->
+          <lightning-combobox
+            label="취소사유(LostReason__c)"
+            placeholder="취소사유를 선택해주세요"
+            options={lostReasonOptions}
+            value={rejectReason}
+            onchange={handleRejectReasonChange}
+          ></lightning-combobox>
+
+          <template if:true={lostReasonLoading}>
+            <div class="slds-m-top_small">
+              <lightning-spinner alternative-text="사유 로딩 중" size="small"></lightning-spinner>
+            </div>
+          </template>
+        </div>
+
+        <footer class="slds-modal__footer">
+          <lightning-button label="취소" onclick={closeRejectModal} class="slds-m-right_small"></lightning-button>
+          <lightning-button variant="destructive" label="반려 확정" onclick={handleReject}></lightning-button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>
