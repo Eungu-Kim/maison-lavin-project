@@ -15,17 +15,18 @@
 
 .info-section {
     display: flex;
-    padding: 24px;
+    padding: 15px;
+    padding-left: 25px;
     align-items: center;
-    gap: 30px;
+    gap: 15px;
 }
 
-.profile-image-wrapper { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #dec552; overflow: hidden; flex-shrink: 0; }
+.profile-image-wrapper { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #dec552; overflow: hidden; flex-shrink: 0; }
 .profile-image { width: 100%; height: 100%; object-fit: cover; }
 .name-section { flex-shrink: 0; min-width: 150px; }
 .profile-name { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
 .customer-number { font-size: 14px; color: #6c757d; }
-.details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex-grow: 1; }
+.details-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0px; flex-grow: 1; }
 .detail-item { display: flex; flex-direction: column; gap: 4px; }
 .detail-label { font-size: 13px; color: #868e96; font-weight: 600; }
 .detail-value { font-size: 14px; color: #343a40; font-weight: 500; }
@@ -34,7 +35,7 @@
 .channels-footer {
     display: flex;
     background-color: var(--footer-bg);
-    height: 60px;
+    height: 40px;
     align-items: stretch;
 }
 
