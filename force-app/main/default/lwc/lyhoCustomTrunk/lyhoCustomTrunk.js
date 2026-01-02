@@ -1,6 +1,16 @@
 import { LightningElement } from 'lwc';
 import HERO_IMG from '@salesforce/resourceUrl/largeCareBG';
-
+import CAT_HANDBAG from '@salesforce/resourceUrl/cat_handbag';
+import CAT_WALLET  from '@salesforce/resourceUrl/cat_wallet';
+import CAT_TRAVEL  from '@salesforce/resourceUrl/cat_travel';
+import CAT_JEWELRY from '@salesforce/resourceUrl/cat_jewelry';
+import CAT_PERFUME from '@salesforce/resourceUrl/cat_perfume';
+import PROD_NEVERFULL from '@salesforce/resourceUrl/prod_neverfull_mm';
+import PROD_KEEPALL50 from '@salesforce/resourceUrl/prod_keepall_50';
+import PROD_HORIZON55 from '@salesforce/resourceUrl/prod_horizon_55';
+import PROD_SPEEDY25  from '@salesforce/resourceUrl/prod_speedy_25';
+import PROD_POCKETORG from '@salesforce/resourceUrl/prod_pocket_organizer';
+import PROD_ONTHEGO   from '@salesforce/resourceUrl/prod_onthego_gm';
 
 export default class MaisonLavinCare extends LightningElement {
   // === 데이터 ===
@@ -78,11 +88,27 @@ export default class MaisonLavinCare extends LightningElement {
     const el = this.template.querySelector('.after-media__img');
   if (!el) return;
 
-  el.style.backgroundImage = `url(${HERO_IMG})`;
-el.style.backgroundSize = 'contain';
-el.style.backgroundRepeat = 'no-repeat';
-el.style.backgroundPosition = 'center';
+    el.style.backgroundImage = `url(${HERO_IMG})`;
+    el.style.backgroundSize = 'contain';
+    el.style.backgroundRepeat = 'no-repeat';
+    el.style.backgroundPosition = 'center';
     this._initialized = true;
+
+// 카테고리 5개 placeholder에 이미지 주입 (템플릿 변경 없음)
+const catImgs = [CAT_HANDBAG, CAT_WALLET, CAT_TRAVEL, CAT_JEWELRY, CAT_PERFUME];
+const catEls = this.template.querySelectorAll('.main-vv__cat-placeholder');
+
+catEls.forEach((el, i) => {
+  const src = catImgs[i];
+  if (!src) return;
+
+  el.style.backgroundImage = `url(${src})`;
+  el.style.backgroundSize = 'cover';       // 아이콘/로고면 'contain' 추천
+  el.style.backgroundPosition = 'center';
+  el.style.backgroundRepeat = 'no-repeat';
+});
+
+
   }
 
   disconnectedCallback() {
@@ -109,6 +135,24 @@ el.style.backgroundPosition = 'center';
     const imgBox = document.createElement('div');
     imgBox.className = 'prod-img-box';
 
+    const imgMap = {
+      "네버풀 MM": PROD_NEVERFULL,
+      "키폴 반둘리에 50": PROD_KEEPALL50,
+      "호라이즌 55": PROD_HORIZON55,
+      "스피디 반둘리에 25": PROD_SPEEDY25,
+      "포켓 오거나이저": PROD_POCKETORG,
+      "온더고 GM": PROD_ONTHEGO
+    };
+  
+    const src = imgMap[product.name];
+    if (src) {
+      imgBox.style.backgroundImage = `url(${src})`;
+      imgBox.style.backgroundSize = 'cover';     // 필요시 contain
+      imgBox.style.backgroundPosition = 'center';
+      imgBox.style.backgroundRepeat = 'no-repeat';
+    }
+  
+
     const info = document.createElement('div');
     info.className = 'prod-info';
 
@@ -127,6 +171,12 @@ el.style.backgroundPosition = 'center';
     card.appendChild(info);
 
     return card;
+
+
+
+
+
+
   }
 
   renderTrack() {

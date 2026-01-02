@@ -1,0 +1,220 @@
+:host{
+    display:block;
+  
+    /* 우측 콘텐츠 컬럼 기준선(왼쪽에서 얼마나 띄울지) */
+    --col-left: clamp(110px, 8.5vw, 150px);
+  
+    /* 우측 패널 안 오른쪽 여백(레퍼런스처럼 넓게) */
+    --col-right: clamp(180px, 14vw, 260px);
+  }
+  
+  /* 화면 꽉 채우고 바깥 스크롤 제거 */
+  .cm-shell{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background: #fff;
+    overflow: hidden;
+  }
+  
+  .cm-layout{
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* LEFT */
+  .cm-left{
+    flex: 1 1 auto;
+    position: relative;
+    background: #0b0b0b;
+    overflow: hidden;
+  }
+  
+  /* 좌측 배경(모니터별 잘림 최소화) */
+  .cm-left-bg{
+    position: absolute;
+    inset: 0;
+    background-color: #0b0b0b;
+    background-position: center bottom;
+    background-size: cover;      /* ✅ 레퍼런스처럼 꽉 차게 */
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+  
+  /* ✅ 검은 투명 레이어 1겹 */
+  .cm-left-overlay{
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  /* RIGHT: 반(50vw) 기준 + 너무 크고 작아지는 것 제한 */
+  .cm-right{
+    flex: 0 0 50vw;
+    min-width: 640px;
+    max-width: 980px;
+    height: 100%;
+    background: #fff;
+    overflow: hidden;
+  }
+  
+  /*
+    ✅ 우측은 absolute 제거하고 grid로 안정화
+    - 1행: 타이틀
+    - 2행: 본문(타이틀과 폼 사이에서 상단 쪽 = 2/3 느낌)
+    - 3행: 폼(중앙 근처)
+  */
+  .cm-right-inner{
+    height: 100%;
+    display: grid;
+  
+    /* 레퍼런스처럼 위 여백, 아래 여백 */
+    padding: clamp(56px, 6.5vh, 76px) var(--col-right) clamp(60px, 7vh, 88px) var(--col-left);
+  
+    /* 3행 구성: 타이틀 / 본문 / 폼 */
+    grid-template-rows:
+      auto
+      minmax(0, 1fr)
+      auto;
+  
+    align-content: stretch;
+    overflow: hidden;
+  }
+  
+  /* ✅ 컬럼 폭 고정(레퍼런스처럼) */
+  .cm-title,
+  .cm-copy,
+  .cm-form{
+    max-width: 620px;
+    width: 100%;
+  }
+  
+  /* 타이틀 */
+  .cm-title{
+    grid-row: 1;
+    margin: 0 0 18px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #111;
+  }
+  
+  /* 본문: “타이틀~폼 사이 2/3 위치(타이틀에 더 가까움)” */
+  .cm-copy{
+    grid-row: 2;
+    margin-top: clamp(22px, 3vh, 34px);
+    align-self: start;           /* ✅ 위쪽에 붙임(타이틀 쪽) */
+    max-width: 560px;
+  }
+  
+  .cm-copy-lead{
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #222;
+  }
+  
+  .cm-copy-sub{
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #444;
+    font-style: italic;
+  }
+  
+  /* 폼: 중간쯤(레퍼런스) */
+  .cm-form{
+    grid-row: 3;
+    align-self: center;          /* ✅ 화면 높이 따라 자동으로 중앙 근처 유지 */
+    margin-top: clamp(40px, 6vh, 70px);
+  }
+  
+  /* 폼 내부 */
+  .cm-required{
+    text-align: right;
+    font-size: 12px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .cm-field{ margin-top: 18px; }
+  
+  .cm-label{
+    display: block;
+    font-size: 12px;
+    color: #222;
+    margin-bottom: 8px;
+  }
+  
+  .cm-input{
+    width: 100%;
+    height: 44px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 0 12px;
+    font-size: 13px;
+    color: #111;
+    outline: none;
+    background: #fff;
+  }
+  .cm-input:focus{ border-color: #111; }
+  
+  .cm-link{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #111;
+    text-decoration: none;
+  }
+  .cm-link:hover{ text-decoration: underline; }
+  
+  .cm-error{
+    margin-top: 14px;
+    font-size: 12px;
+    color: #b00020;
+  }
+  
+  .cm-actions{ margin-top: 28px; }
+  
+  .cm-cta{
+    width: 100%;
+    height: 48px;
+    border: 0;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+  }
+  .cm-cta:disabled{ opacity: 0.55; cursor: default; }
+  
+  .cm-loading{ margin-top: 14px; }
+  
+  /* 모바일 */
+  @media (max-width: 900px){
+    .cm-layout{ flex-direction: column; }
+    .cm-left{ display: none; }
+  
+    .cm-right{
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+    }
+  
+    .cm-right-inner{
+      display: block;
+      padding: 42px 20px 64px;
+      overflow: auto;
+    }
+  
+    .cm-copy{ margin-top: 18px; }
+    .cm-form{ margin-top: 70px; }
+  }
+  

@@ -1,11 +1,15 @@
 import { LightningElement, track } from 'lwc';
 import isEligibleForCustomMade from '@salesforce/apex/CustomMadeService.isEligibleForCustomMade';
+import BACKG1 from '@salesforce/resourceUrl/backg1';
 
 export default class CustomMadeRequest extends LightningElement {
   @track email = '';
   @track password = '';
   @track error = '';
   @track loading = false;
+
+  // 배경 1회만 적용용
+  _bgApplied = false;
 
   handleChange(e) {
     const { name, value } = e.target;
@@ -47,4 +51,19 @@ export default class CustomMadeRequest extends LightningElement {
       this.loading = false;
     }
   }
+  // 좌측 배경 이미지 적용
+  renderedCallback() {
+    if (this._bgApplied) return;
+
+    const el = this.template.querySelector('.cm-left-bg');
+    if (!el) return;
+
+    el.style.backgroundImage = `url(${BACKG1})`;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+    el.style.backgroundRepeat = 'no-repeat';
+
+    this._bgApplied = true;
+  }
+
 }
