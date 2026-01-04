@@ -13,8 +13,11 @@
             >
                 <lightning-messages></lightning-messages>
 
-                <!-- Parent Record (포함!) -->
+                <!-- Parent Record (포함) -->
                 <lightning-input-field field-name="ParentRecordId" required></lightning-input-field>
+
+                <!-- 매장(Store__c) Lookup: 표준 Lookup 검색 UI로 선택 가능 -->
+                <lightning-input-field field-name="Store__c" required></lightning-input-field>
 
                 <!-- 예약 상태 -->
                 <lightning-input-field field-name="Status" required></lightning-input-field>

@@ -17,6 +17,10 @@ export default class QuickAppointmentCreator extends NavigationMixin(LightningEl
             fields.ParentRecordId = this.recordId;
         }
 
+        // Store__c는 화면에서 사용자가 선택하도록 두며,
+        // required 처리(HTML의 required)로 필수 입력을 강제한다.
+        // 만약 여기서 기본값을 강제하고 싶으면 fields.Store__c = '...Id' 형태로 넣어야 함.
+
         this.template.querySelector('lightning-record-edit-form').submit(fields);
     }
 
