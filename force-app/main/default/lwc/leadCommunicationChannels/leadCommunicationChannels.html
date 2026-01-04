@@ -1,0 +1,39 @@
+<template>
+    <div class="channels-container">
+        <div class="channel-item" onclick={handleTelephoneClick}>
+            <div class="icon-wrapper">
+                <lightning-icon 
+                    icon-name="utility:call" 
+                    size="small"
+                    variant="inverse">
+                </lightning-icon>
+                <span class={telephoneIndicatorClass}></span>
+            </div>
+            <p class="channel-label">Telephone</p>
+        </div>
+
+        <div class="channel-item" onclick={handleSMSClick}>
+            <div class="icon-wrapper">
+                <lightning-icon 
+                    icon-name="utility:sms" 
+                    size="small"
+                    variant="inverse">
+                </lightning-icon>
+                <span class={smsIndicatorClass}></span>
+            </div>
+            <p class="channel-label">SMS</p>
+        </div>
+
+        <div class="channel-item" onclick={handleEmailClick}>
+            <div class="icon-wrapper">
+                <lightning-icon 
+                    icon-name="utility:email" 
+                    size="small"
+                    variant="inverse">
+                </lightning-icon>
+                <span class={emailIndicatorClass}></span>
+            </div>
+            <p class="channel-label">Email</p>
+        </div>
+    </div>
+</template>
