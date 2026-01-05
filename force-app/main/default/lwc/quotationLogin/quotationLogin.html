@@ -1,38 +1,55 @@
 <template>
-  <div class="slds-box slds-m-around_medium">
-    <h2 class="slds-text-heading_medium slds-m-bottom_medium">MY MAISON 로그인</h2>
+  <div class="login-container">
+      
+      <div class="lavin-login-card">
+          <h2 class="login-title">MY MAISON LOGIN</h2>
 
-    <lightning-input
-      type="email"
-      label="이메일"
-      value={email}
-      onchange={handleEmailChange}
-      required>
-    </lightning-input>
+          <div class="input-group">
+              <lightning-input
+                  class="input-field"
+                  type="email"
+                  label="이메일 (E-mail)"
+                  placeholder="example@maisonlavin.com"
+                  value={email}
+                  onchange={handleEmailChange}
+                  required
+                  variant="standard">
+              </lightning-input>
 
-    <lightning-input
-      type="password"
-      label="비밀번호"
-      value={password}
-      onchange={handlePasswordChange}
-      required>
-    </lightning-input>
+              <lightning-input
+                  class="input-field"
+                  type="password"
+                  label="비밀번호 (Password)"
+                  placeholder="비밀번호를 입력하세요"
+                  value={password}
+                  onchange={handlePasswordChange}
+                  required
+                  variant="standard">
+              </lightning-input>
+          </div>
 
-    <template if:true={error}>
-      <div class="slds-text-color_error slds-m-top_small">{error}</div>
-    </template>
+          <template if:true={error}>
+              <div class="slds-text-color_error slds-text-align_center slds-m-bottom_medium">
+                  {error}
+              </div>
+          </template>
 
-    <div class="slds-m-top_medium">
-      <lightning-button
-        variant="brand"
-        label="로그인 후 견적서 확인"
-        onclick={handleLogin}
-        disabled={loading}>
-      </lightning-button>
+          <div class="btn-wrapper">
+              <lightning-button
+                  variant="brand"
+                  label="로그인 후 견적서 확인"
+                  title="로그인"
+                  onclick={handleLogin}
+                  class="btn-black-big"
+                  stretch
+                  disabled={loading}>
+              </lightning-button>
+          </div>
 
-      <template if:true={loading}>
-        <lightning-spinner size="small" alternative-text="처리 중"></lightning-spinner>
-      </template>
-    </div>
+          <template if:true={loading}>
+              <lightning-spinner alternative-text="로그인 중" size="medium"></lightning-spinner>
+          </template>
+      </div>
+
   </div>
 </template>

@@ -1,0 +1,80 @@
+/* 1. 전체 페이지 배경 (화면 정중앙 정렬) + ✅ 그라데이션 추가 */
+.login-container {
+    /* 기존 단색 배경 제거 -> 그라데이션 적용 */
+    /* 은은한 화이트~라이트 그레이 대각선 그라데이션 */
+    background-image: linear-gradient(135deg, #ffffff 0%, #e9ecef 100%);
+    
+    min-height: 100vh;         /* 화면 전체 높이 사용 */
+    display: flex;
+    align-items: center;       /* 수직 중앙 */
+    justify-content: center;   /* 수평 중앙 */
+    padding: 2rem;             /* 모바일 등에서 외곽 여백 확보 */
+    font-family: 'Pretendard', sans-serif;
+}
+
+/* 2. 로그인 카드 디자인 + ✅ 크기 키우기 */
+.lavin-login-card {
+    background-color: #ffffff;
+    width: 100%;
+    
+    /* ✅ 박스 너비를 더 넓게 (기존 440px -> 550px) */
+    max-width: 550px;          
+    
+    /* ✅ 내부 여백을 더 시원하게 (기존 40px -> 60px) */
+    padding: 60px;             
+    
+    /* ✅ 박스가 커진 만큼 모서리도 더 둥글게 (16px -> 24px) */
+    border-radius: 24px;       
+    
+    /* ✅ 그림자를 더 깊고 부드럽게 주어 입체감 강조 */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); 
+    border: 1px solid #f1f3f5; /* 테두리는 아주 연하게 */
+}
+
+/* 3. 타이틀 디자인 */
+.login-title {
+    font-size: 1.75rem; /* 타이틀 폰트도 약간 키움 */
+    font-weight: 700;
+    text-align: center;
+    color: #111;
+    margin-bottom: 2.5rem; /* 간격 조금 더 넓힘 */
+    letter-spacing: -0.5px;
+}
+
+/* 4. 입력 필드 간격 조정 */
+.input-group {
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    margin-bottom: 1.5rem;
+    --slds-c-input-radius-border: 12px; /* 인풋창 모서리도 조금 더 둥글게 맞춤 */
+    font-size: 1rem;
+}
+
+/* 5. 버튼 디자인 (이전과 동일한 스타일 유지하되 상단 여백 증가) */
+.btn-wrapper {
+    margin-top: 3rem; /* 버튼 위 여백 증가 */
+}
+
+.btn-black-big {
+    width: 100%;
+    display: block;
+
+    /* 버튼 스타일링 훅 */
+    --sds-c-button-brand-color-background: #111111;
+    --sds-c-button-brand-color-border: #111111;
+    --sds-c-button-brand-color-background-hover: #333333;
+    --sds-c-button-brand-color-border-hover: #333333;
+    
+    --sds-c-button-text-color: #ffffff;
+    --sds-c-button-radius-border: 12px; /* 버튼 모서리도 카드에 맞춰 조정 */
+
+    /* 크기 강제 확장 */
+    --sds-c-button-sizing-min-height: 60px; /* 높이 약간 더 키움 (56 -> 60) */
+    --sds-c-button-line-height: 60px;
+    --sds-c-button-width: 100%;
+    
+    font-size: 1.15rem; /* 폰트 크기 약간 키움 */
+    font-weight: 700;
+}
