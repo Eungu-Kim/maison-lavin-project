@@ -1,0 +1,56 @@
+.channels-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 12px 8px;
+    background-color: #ece6cc;
+    border-radius: 20px;
+}
+
+.channel-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.channel-item:hover {
+    transform: scale(1.1);
+}
+
+.icon-wrapper {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #57474a;
+}
+
+.indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.indicator.red {
+    background-color: #ff6060;
+}
+
+.indicator.green {
+    background-color: #54c975;
+}
+
+.channel-label {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #000000;
+}
