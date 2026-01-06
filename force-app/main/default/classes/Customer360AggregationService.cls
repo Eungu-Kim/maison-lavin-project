@@ -104,6 +104,7 @@ public with sharing class Customer360AggregationService {
             FROM Case
             WHERE AccountId IN :accountIds
               AND IsClosed = false
+              AND Status != 'Escalated'
             GROUP BY AccountId
         ]) {
             Id accId = (Id) ar.get('accId');
