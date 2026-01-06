@@ -1,0 +1,199 @@
+lightning-card {
+    --slds-c-card-spacing-block: 0;
+    --slds-c-card-spacing-inline: 0;
+}
+
+.profile-card {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 12px;
+}
+
+/* 상단: 사진 + 이름/고객번호 */
+.profile-header-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* 프로필 이미지 */
+.profile-image-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #dec552;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.profile-image {
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+}
+
+/* 이름 + 고객번호 */
+.profile-name-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.customer-number {
+    font-size: 15px;
+    color: #6c757d;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* 기본 정보 */
+.profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.detail-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ✅ 이 'detail-item' 스타일이 기준 */
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.detail-item:hover {
+    background-color: #f8f9fa;
+}
+
+.detail-label {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #868e96;
+    font-weight: 600;
+}
+
+.detail-value {
+    font-size: 14.5px;
+    color: #343a40;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 구분선 */
+.section-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin-top: 4px;
+}
+
+/* =========================
+   ✅ KPI를 detail 스타일로 통일
+   ========================= */
+
+/* KPI는 1컬럼 세로 스택 */
+.kpi-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+/* KPI block 자체를 detail-item처럼 보이게 */
+.kpi-block {
+    padding: 0;                 /* 내부에서 detail-item로 나눠서 padding은 거기서 */
+    border: none;
+    background: transparent;
+}
+
+/* 구매/문의/관계/상태 제목은 유지 (조금만 강조) */
+.kpi-header {
+    font-weight: 800;
+    color: #1a1a1a;
+    font-size: 14px;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.01em;
+}
+
+/* KPI row를 detail-item로 보이게 */
+.kpi-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    /* ✅ detail-item 룩앤필 */
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.kpi-row:hover {
+    background-color: #f8f9fa;  /* detail-item hover와 동일 */
+}
+
+/* KPI 라벨은 detail-label 느낌 */
+.kpi-label {
+    color: #868e96;
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* KPI 값은 detail-value보다 살짝 강조 */
+.kpi-value {
+    color: #343a40;
+    font-weight: 800;
+    font-size: 14.5px;
+    white-space: nowrap;
+}
+
+/* empty 상태 */
+.empty-state {
+    border: 1px dashed #d0d0d0;
+    border-radius: 12px;
+    padding: 12px;
+    color: #6c757d;
+    font-size: 12.5px;
+    margin-top: 6px;
+}
