@@ -13,27 +13,41 @@
             >
                 <lightning-messages></lightning-messages>
 
-                <!-- Parent Record (포함) -->
-                <lightning-input-field field-name="ParentRecordId" required></lightning-input-field>
+                <!-- Parent Record -->
+                <lightning-input-field
+                    field-name="ParentRecordId"
+                    required
+                ></lightning-input-field>
 
-                <!-- 매장(Store__c) Lookup: 표준 Lookup 검색 UI로 선택 가능 -->
-                <lightning-input-field field-name="Store__c" required></lightning-input-field>
+                <!-- 매장 -->
+                <lightning-input-field
+                    field-name="Store__c"
+                    required
+                ></lightning-input-field>
 
-                <!-- 예약 상태 -->
-                <lightning-input-field field-name="Status" required></lightning-input-field>
-
-                <!-- 서비스 시작 / 종료 -->
-                <lightning-input-field field-name="SchedStartTime" required></lightning-input-field>
-                <lightning-input-field field-name="SchedEndTime" required></lightning-input-field>
+                <!-- 서비스 시작 -->
+                <lightning-input-field
+                    field-name="SchedStartTime"
+                    required
+                ></lightning-input-field>
 
                 <!-- 제목 -->
-                <lightning-input-field field-name="Subject" required></lightning-input-field>
+                <lightning-input-field
+                    field-name="Subject"
+                    required
+                ></lightning-input-field>
 
                 <!-- 서비스 노트 -->
-                <lightning-input-field field-name="Description"></lightning-input-field>
+                <lightning-input-field
+                    field-name="Description"
+                ></lightning-input-field>
 
                 <div class="slds-m-top_medium slds-text-align_right">
-                    <lightning-button variant="brand" type="submit" label="예약 생성"></lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        type="submit"
+                        label="예약 생성"
+                    ></lightning-button>
                 </div>
             </lightning-record-edit-form>
         </div>

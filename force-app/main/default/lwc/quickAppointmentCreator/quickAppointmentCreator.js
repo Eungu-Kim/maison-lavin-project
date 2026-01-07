@@ -12,16 +12,17 @@ export default class QuickAppointmentCreator extends NavigationMixin(LightningEl
 
         const fields = event.detail.fields;
 
-        // 사용자가 ParentRecordId를 선택하지 않았으면, 기본으로 현재 레코드(=MessagingSession)로 연결
+        // ParentRecordId가 없으면 현재 레코드로 연결
         if (!fields.ParentRecordId) {
             fields.ParentRecordId = this.recordId;
         }
 
-        // Store__c는 화면에서 사용자가 선택하도록 두며,
-        // required 처리(HTML의 required)로 필수 입력을 강제한다.
-        // 만약 여기서 기본값을 강제하고 싶으면 fields.Store__c = '...Id' 형태로 넣어야 함.
+        // ✅ 예약 상태를 무조건 "예약 확정"으로 강제
+        fields.Status = '예약 확정';
 
-        this.template.querySelector('lightning-record-edit-form').submit(fields);
+        this.template
+            .querySelector('lightning-record-edit-form')
+            .submit(fields);
     }
 
     handleSuccess(event) {
@@ -36,6 +37,7 @@ export default class QuickAppointmentCreator extends NavigationMixin(LightningEl
             })
         );
 
+        // 생성된 예약 레코드로 이동
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
