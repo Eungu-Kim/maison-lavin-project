@@ -46,3 +46,8 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# Demo / Mock LWC (Customer 360) - do not commit
+force-app/main/default/lwc/aiAgentWardrobeLook/
+force-app/main/default/lwc/customerCartView/
+force-app/main/default/lwc/initialMockuoHistory/
