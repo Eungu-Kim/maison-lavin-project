@@ -73,7 +73,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 
 **Lead 생성 시연 (클릭 시 재생)**  
 
-<a href="https://github.com/Eungu-Kim/maison-lavin-project/blob/main/docs/videos/create_lead.mp4">
+<a href="https://github.com/Eungu-Kim/maison-lavin-project/blob/dev/docs/videos/create_lead.mp4">
   <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.png" width="500"/>
 </a>
 
@@ -88,7 +88,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - 커스터마이징 결과를 Opportunity & Quotation에 자동 반영
 - Visualforce 기반 PDF 견적서 자동 생성
 
-[![견적서 생성 시연](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_quotation.png)](https://github.com/Eungu-Kim/maison-lavin-project/blob/main/docs/videos/demo-quotation.mp4)
+[![견적서 생성 시연](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_quotation.png)](https://github.com/Eungu-Kim/maison-lavin-project/blob/dev/docs/videos/demo-quotation.mp4)
 
 ### 3️⃣ Experience Cloud 고객 포털 (로그인, 주문 조회, 견적 확인)
 
