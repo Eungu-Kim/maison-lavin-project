@@ -72,6 +72,8 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - 주문 및 케어 이력이 하나의 고객 레코드에 누적
 
 **Lead 생성 시연**
+
+
 https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.mp4
 
 ![Lead Page](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/lead_page.png)
@@ -86,6 +88,8 @@ https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_
 - Visualforce 기반 PDF 견적서 자동 생성
 
 **견적서 생성 & 확인 시연**
+
+
 https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-quotation.mp4
 
 ### 3️⃣ Experience Cloud 고객 포털 (로그인, 주문 조회, 견적 확인)
