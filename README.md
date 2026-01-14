@@ -61,8 +61,6 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 
 ## ⭐ 주요 기능
 
----
-
 ### 1️⃣ Lead → Account → Opportunity → Case 기반 전체 고객 여정 관리
 
 고객의 첫 접점(팝업/웹 유입)부터 실제 주문, 제작, 그리고 사후 케어까지  
@@ -73,13 +71,10 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - Lead → Account → Opportunity 자동 전환 Flow
 - 주문 및 케어 이력이 하나의 고객 레코드에 누적
 
-**Lead 생성 & 고객 전환 시연**
-<video src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.mp4" controls width="100%"></video>
+**Lead 생성 시연**
+https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.mp4
 
-**Lead & Account 관리 화면**
 ![Lead Page](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/lead_page.png)
-
----
 
 ### 2️⃣ LWC 기반 제품 커스터마이저 및 견적서 생성
 
@@ -91,9 +86,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - Visualforce 기반 PDF 견적서 자동 생성
 
 **견적서 생성 & 확인 시연**
-<video src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-quotation.mp4" controls width="100%"></video>
-
----
+https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-quotation.mp4
 
 ### 3️⃣ Experience Cloud 고객 포털 (로그인, 주문 조회, 견적 확인)
 
@@ -104,10 +97,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - 견적서 PDF 조회
 - 주문 제작 진행 상태 확인
 
-**고객 견적 확인 화면**
 ![Quotation Check](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/quotation_check.png)
-
----
 
 ### 4️⃣ Customer 360 통합 콘솔
 
@@ -118,10 +108,7 @@ Sales, Service, Order, Asset, Interaction 데이터를 하나의 화면으로 �
 - 주문·견적·자산·케어 이력
 - 장바구니 및 추천 정보
 
-**Customer 360 화면**
 ![Customer 360](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customer360.png)
-
----
 
 ### 5️⃣ Omni-Channel 상담 및 Case 관리
 
