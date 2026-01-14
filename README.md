@@ -1,5 +1,5 @@
 <p align="middle">
-  <img width="300px" src="docs/maison_lavin_600x120_transparent_smaller.png"/>
+  <img width="500px" src="docs/maison_lavin_600x120_transparent_smaller.png"/>
 </p>
 <h3 align="middle">LWC·Flow·Apex·Agentforce로 구현한 Luxury Customer 360 & Order-to-Care CRM</h3>
 
