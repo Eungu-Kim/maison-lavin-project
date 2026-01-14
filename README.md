@@ -63,12 +63,12 @@ MAISON-LAVIN은 주문제작, 개인화 스타일링, 사후 케어·리페어�
 ## 🎞 Demo — Customer Journey Scenarios
 
 ### Scene #1 — Lead → Order (Sales)
-잠재 고객이 팝업과 AI 상담을 통해 유입되어  
+잠재 고객이 팝업을 통해 유입되어  
 주문 제작과 견적 승인, 결제까지 이어지는 디지털 구매 여정
 
-- [팝업 & AI 상담으로 Lead 유입](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-lead.mp4)
+- [팝업으로 Lead 유입](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-lead.mp4)
+- [AI 구매 상담 & 제품 커스터마이저 활용 주문 접수](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-createProduct.mp4)
 - [견적 생성 및 Opportunity 관리](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-opportunity.mp4)
-- [제품 커스터마이저 & 주문 제작](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-createProduct.mp4)
 
 ---
 
@@ -98,7 +98,7 @@ MAISON-LAVIN은 주문제작, 개인화 스타일링, 사후 케어·리페어�
 - 주문/케어 이력이 고객 레코드에 누적되는 운영 구조 설계
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.png" width="350" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.png" width="450" />
 </p>
 
 <p>
@@ -112,6 +112,10 @@ MAISON-LAVIN은 주문제작, 개인화 스타일링, 사후 케어·리페어�
 - LWC 기반 제품 옵션 선택 UI 구성
 - 커스터마이징 결과가 Opportunity/Quotation에 반영되도록 데이터 흐름 설계
 - Visualforce 기반 PDF 견적서 생성 구조 적용
+
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customizer.png" width="450" />
+</p>
 
 <p>
   <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_quotation.png" width="850" />
