@@ -64,9 +64,9 @@ MAISON-LAVIN은 **럭셔리 패션 브랜드의 주문제작, 구매, 케어·�
 잠재 고객이 팝업을 통해 유입되어  
 주문 제작과 견적 승인, 결제까지 이어지는 디지털 구매 여정
 
-- [팝업으로 Lead 유입](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-lead.mp4)
-- [AI 구매 상담 & 제품 커스터마이저 활용 주문 접수](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-createProduct.mp4)
-- [견적 생성 및 Opportunity 관리](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-opportunity.mp4)
+- [팝업으로 Lead 유입](https://github.com/user-attachments/assets/0716fa21-ec7a-4782-9d1d-476a88a36406)
+- [AI 구매 상담 & 제품 커스터마이저 활용 주문 접수](https://github.com/user-attachments/assets/5e08c209-4af4-481c-87ba-001ca287e794)
+- [견적 생성 및 Opportunity 관리](https://github.com/user-attachments/assets/674da8bb-2f9d-4db9-b03c-2ff4c3b59b4e)
 
 ---
 
@@ -74,16 +74,15 @@ MAISON-LAVIN은 **럭셔리 패션 브랜드의 주문제작, 구매, 케어·�
 구매 이후 일정 시간이 지난 고객에게  
 케어 알림, AI 상담, 수선 접수, 진행 관리, 만족도 조사까지 연결되는 사후 관리 흐름
 
-- [케어 알림 & 리페어 접수](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-repair.mp4)
-- [고객 설문 & 만족도 조사](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-survey.mp4)
+- [케어 알림 & 리페어 접수](https://github.com/user-attachments/assets/709e3083-fdde-4514-9b97-af824e0af29a)
+- [고객 설문 & 만족도 조사](https://github.com/user-attachments/assets/3b63eef9-9985-4893-8edc-219bdfe6ea59)
 
 ---
 
 ### Scene #3 — Customer 360 & Executive View
 임원이 고객, 주문, 케어, 성과를 하나의 화면에서 확인하는 통합 운영 뷰
 
-- [Customer 360 & KPI 대시보드](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-dashboard.mp4)
-
+- [Customer 360 & KPI 대시보드](https://github.com/user-attachments/assets/c838a809-7c17-456d-b631-5e2eddd063d1)
 
 <br/>
 
