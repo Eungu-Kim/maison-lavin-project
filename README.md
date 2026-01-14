@@ -114,7 +114,7 @@ MAISON-LAVIN은 주문제작, 개인화 스타일링, 사후 케어·리페어�
 - Visualforce 기반 PDF 견적서 생성 구조 적용
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customizer.png" width="450" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customizer.png" width="650" />
 </p>
 
 <p>
