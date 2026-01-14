@@ -177,21 +177,33 @@ MAISON-LAVIN은 주문제작, 개인화 스타일링, 사후 케어·리페어�
 
 ## 🔧 Stack
 
-**Salesforce**
-- Sales Cloud
-- Service Cloud
-- Experience Cloud
-- Data Cloud
-- Agentforce  
+### Frontend (CRM UI & Customer Portal)
 
-**Development**
-- Apex
-- Lightning Web Components (LWC)
-- Visualforce
-- Flow
-- Omni-Channel
-- Web-to-Lead
-- Knowledge  
+**Language**  
+JavaScript (ES6+), HTML, CSS  
+
+**Library & Framework**  
+Lightning Web Components (LWC), SLDS (Salesforce Lightning Design System)  
+
+**Tools**  
+Salesforce Lightning App Builder, Salesforce Lightning Experience, VS Code (SFDX)
+
+### Backend (CRM Logic & Automation)
+
+**Language**  
+Apex  
+
+**AI Engine**  
+Agentforce (Agent Builder, Prompt Builder – AI Wardrobing Agent)  
+
+**Automation**  
+Flow Builder (Lead Conversion Flow, Order Process Flow, Care & Repair Flow, Email & Notification Flow)  
+
+**Database**  
+Salesforce Objects (Lead, Account, Opportunity, Case, Order, Asset, Quotation, Interaction, Messaging Session 등)  
+
+**Routing & Service**  
+Omni-Channel (Agentforce → Human Agent → Case 기반 상담 흐름)
 
 **Integration**
 - REST API (주소 검색, 지도 연동)
@@ -200,10 +212,10 @@ MAISON-LAVIN은 주문제작, 개인화 스타일링, 사후 케어·리페어�
 
 ## 💡 기대효과
 
-- 고객의 구매·제작·케어 이력을 하나의 CRM에서 통합 관리
-- AI 기반 개인화 추천을 통한 재구매율 향상
-- 영업·CS·매장의 데이터 통합 협업 환경 구축
-- 실제 럭셔리 브랜드 CRM 구축을 위한 표준 아키텍처로 활용 가능
+- **고객 데이터 통합 관리** : 구매, 주문제작, 케어를 하나의 CRM 흐름으로 연결하여 일관된 고객 관계를 유지
+- **개인화 기반 매출 증대** : 고객의 취향과 행동 데이터를 활용해 맞춤 추천과 재구매 기회를 창출
+- **조직 간 협업 구조** : 영업, 매장, 서비스 조직이 동일한 고객 데이터를 공유하며 효율적으로 협업
+- **디지털 럭셔리 운영 모델** : 럭셔리 브랜드에 적합한 CRM 아키텍처의 표준 사례로 활용 가능
 
 <br/>
 
