@@ -163,7 +163,9 @@ MAISON-LAVIN은 주문제작, 개인화 스타일링, 사후 케어·리페어�
 
 ### Entity Relationship Diagram (ERD)
 
-![ERD](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/erd_maisonlavin.png)
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/erd_maisonlavin.png" width="550" />
+</p>
 
 주요 객체:
 - Lead, Account, Opportunity, Case
