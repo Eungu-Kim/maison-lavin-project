@@ -1,7 +1,6 @@
 <p align="middle">
   <img width="300px" src="docs/maison_lavin_600x120_transparent_smaller.png"/>
 </p>
-<h1 align="middle">MAISON-LAVIN</h1>
 <h3 align="middle">LWC·Flow·Apex·Agentforce로 구현한 Luxury Customer 360 & Order-to-Care CRM</h3>
 
 <br/>
@@ -33,25 +32,12 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 
 ## 🎞 Demo
 
-**GitHub Release 시연 영상**
-
-- Lead → 고객 전환  
-https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-lead.mp4  
-
-- 견적 및 주문 제작  
-https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-opportunity.mp4  
-
-- 제품 커스터마이저  
-https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-createProduct.mp4  
-
-- Customer 360 & 대시보드  
-https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-dashboard.mp4  
-
-- 리페어 & 사후 관리  
-https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-repair.mp4  
-
-- 고객 설문 & 피드백  
-https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-survey.mp4  
+- [Lead → 고객 전환](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-lead.mp4)
+- [견적 및 주문 제작](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-opportunity.mp4)
+- [제품 커스터마이저](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-createProduct.mp4)
+- [Customer 360 & 대시보드](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-dashboard.mp4)
+- [리페어 & 사후 관리](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-repair.mp4)
+- [고객 설문 & 피드백](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-survey.mp4)
 
 <br/>
 
@@ -68,12 +54,13 @@ https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-su
 
 ## 🔨 프로젝트 구조
 
-ERD  
-https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/erd_maisonlavin.png  
+### Entity Relationship Diagram (ERD)
+
+![ERD](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/erd_maisonlavin.png)
 
 주요 객체:
 - Lead, Account, Opportunity, Case
-- Order, Asset, Quotation, Interaction
+- Order, Asset, Quotation, Interaction  
 
 모든 데이터는 **Customer 360 콘솔**에서 통합 조회됩니다.
 
@@ -86,7 +73,7 @@ https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/erd_mai
 - Service Cloud
 - Experience Cloud
 - Data Cloud
-- Agentforce
+- Agentforce  
 
 **Development**
 - Apex
@@ -95,7 +82,7 @@ https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/erd_mai
 - Flow
 - Omni-Channel
 - Web-to-Lead
-- Knowledge
+- Knowledge  
 
 **Integration**
 - REST API (주소 검색, 지도 연동)
