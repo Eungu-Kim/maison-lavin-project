@@ -30,25 +30,100 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 
 <br/>
 
-## 🎞 Demo
+## 🎞 Demo — Customer Journey Scenarios
 
-- [Lead → 고객 전환](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-lead.mp4)
-- [견적 및 주문 제작](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-opportunity.mp4)
-- [제품 커스터마이저](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-createProduct.mp4)
-- [Customer 360 & 대시보드](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-dashboard.mp4)
-- [리페어 & 사후 관리](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-repair.mp4)
-- [고객 설문 & 피드백](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-survey.mp4)
+### 🟦 Scene #1 — Lead → Order (Sales)
+잠재 고객이 팝업과 AI 상담을 통해 유입되어  
+주문 제작과 견적 승인, 결제까지 이어지는 디지털 구매 여정
+
+- [팝업 & AI 상담으로 Lead 유입](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-lead.mp4)
+- [견적 생성 및 Opportunity 관리](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-opportunity.mp4)
+- [제품 커스터마이저 & 주문 제작](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-createProduct.mp4)
+
+---
+
+### 🟩 Scene #2 — Care & Repair (Service)
+구매 이후 일정 시간이 지난 고객에게  
+케어 알림, AI 상담, 수선 접수, 진행 관리, 만족도 조사까지 연결되는 사후 관리 흐름
+
+- [케어 알림 & 리페어 접수](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-repair.mp4)
+- [고객 설문 & 만족도 조사](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-survey.mp4)
+
+---
+
+### 🟨 Scene #3 — Customer 360 & Executive View
+임원이 고객, 주문, 케어, 성과를 하나의 화면에서 확인하는 통합 운영 뷰
+
+- [Customer 360 & KPI 대시보드](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-dashboard.mp4)
+
 
 <br/>
 
 ## ⭐ 주요 기능
 
-- Lead → Account → Opportunity → Case 기반 전체 고객 여정 관리
-- LWC 기반 제품 커스터마이저 및 견적서 생성
-- Experience Cloud 고객 포털 (로그인, 주문 조회, 견적 확인)
-- Customer 360 통합 콘솔
-- Omni-Channel 상담 및 Case 관리
-- Agentforce 기반 AI 추천 (Next Best Look)
+---
+
+### 1️⃣ Lead → Account → Opportunity → Case 기반 전체 고객 여정 관리
+
+고객의 첫 접점(팝업/웹 유입)부터 실제 주문, 제작, 그리고 사후 케어까지  
+모든 고객 활동이 **Lead → Account → Opportunity → Case** 구조로 연결되도록 설계되었습니다.  
+이를 통해 영업·매장·CS가 **동일한 고객 데이터를 공유하는 단일 Customer 360 구조**를 구현했습니다.
+
+- Web-to-Lead 기반 잠재 고객 자동 유입
+- Lead → Account → Opportunity 자동 전환 Flow
+- 주문 및 케어 이력이 하나의 고객 레코드에 누적
+
+**Lead 생성 & 고객 전환 시연**
+<video src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.mp4" controls width="100%"></video>
+
+**Lead & Account 관리 화면**
+![Lead Page](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/lead_page.png)
+
+---
+
+### 2️⃣ LWC 기반 제품 커스터마이저 및 견적서 생성
+
+고객은 Experience Cloud에서 직접 제품을 커스터마이징하고,  
+직원은 해당 정보를 기반으로 **견적서를 클릭 한 번으로 생성**할 수 있도록 구현했습니다.
+
+- LWC 기반 제품 옵션 선택 UI
+- 커스터마이징 결과를 Opportunity & Quotation에 자동 반영
+- Visualforce 기반 PDF 견적서 자동 생성
+
+**견적서 생성 & 확인 시연**
+<video src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/demo-quotation.mp4" controls width="100%"></video>
+
+---
+
+### 3️⃣ Experience Cloud 고객 포털 (로그인, 주문 조회, 견적 확인)
+
+고객은 별도의 상담 없이도  
+**주문 제작 상태, 견적서, 결제 정보**를 직접 확인할 수 있습니다.
+
+- 고객 전용 로그인 & 회원가입
+- 견적서 PDF 조회
+- 주문 제작 진행 상태 확인
+
+**고객 견적 확인 화면**
+![Quotation Check](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/quotation_check.png)
+
+---
+
+### 4️⃣ Customer 360 통합 콘솔
+
+Sales, Service, Order, Asset, Interaction 데이터를 하나의 화면으로 통합한  
+**Customer 360 콘솔**을 구축하여, 직원이 고객 상태를 즉시 파악할 수 있도록 했습니다.
+
+- 고객 기본 정보
+- 주문·견적·자산·케어 이력
+- 장바구니 및 추천 정보
+
+**Customer 360 화면**
+![Customer 360](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customer360.png)
+
+---
+
+### 5️⃣ Omni-Channel 상담 및 Case 관리
 
 <br/>
 
