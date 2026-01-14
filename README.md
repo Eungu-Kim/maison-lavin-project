@@ -61,8 +61,6 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 
 ## ⭐ 주요 기능
 
----
-
 ### 1️⃣ Lead → Account → Opportunity → Case 기반 전체 고객 여정 관리
 
 - Web-to-Lead 기반 잠재 고객 자동 유입 구조 반영
@@ -70,11 +68,11 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - 주문/케어 이력이 고객 레코드에 누적되는 운영 구조 설계
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.png" width="650" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.png" width="350" />
 </p>
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/lead_page.png" width="650" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/lead_page.png" width="850" />
 </p>
 
 ---
@@ -86,7 +84,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - Visualforce 기반 PDF 견적서 생성 구조 적용
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_quotation.png" width="650" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_quotation.png" width="850" />
 </p>
 
 ---
@@ -98,7 +96,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - 고객-직원 간 커뮤니케이션을 위한 접점 제공
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/quotation_check.png" width="650" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/quotation_check.png" width="850" />
 </p>
 
 ---
@@ -110,7 +108,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - 담당자가 한 화면에서 Next Action을 판단 가능한 구조
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customer360.png" width="650" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customer360.png" width="850" />
 </p>
 
 ---
@@ -122,7 +120,7 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 - Case 진행 상태 공유 및 내부 코멘트 기반 협업 구조
 
 <p>
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/repair_agentforce.png" width="650" />
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/repair_agentforce.png" width="850" />
 </p>
 
 <br/>
