@@ -61,58 +61,69 @@ MAISON-LAVIN은 이 문제를 해결하기 위해
 
 ## ⭐ 주요 기능
 
+---
+
 ### 1️⃣ Lead → Account → Opportunity → Case 기반 전체 고객 여정 관리
 
-고객의 첫 접점(팝업/웹 유입)부터 실제 주문, 제작, 그리고 사후 케어까지  
-모든 고객 활동이 **Lead → Account → Opportunity → Case** 구조로 연결되도록 설계되었습니다.  
-이를 통해 영업·매장·CS가 **동일한 고객 데이터를 공유하는 단일 Customer 360 구조**를 구현했습니다.
+- Web-to-Lead 기반 잠재 고객 자동 유입 구조 반영
+- Flow 기반 Lead → Account/Opportunity 전환 및 상태 흐름 연결
+- 주문/케어 이력이 고객 레코드에 누적되는 운영 구조 설계
 
-- Web-to-Lead 기반 잠재 고객 자동 유입
-- Lead → Account → Opportunity 자동 전환 Flow
-- 주문 및 케어 이력이 하나의 고객 레코드에 누적
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.png" width="650" />
+</p>
 
-**Lead 생성 시연 (클릭 시 재생)**  
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/lead_page.png" width="650" />
+</p>
 
-<a href="https://github.com/Eungu-Kim/maison-lavin-project/blob/dev/docs/videos/create_lead.mp4">
-  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_lead.png" width="500"/>
-</a>
-
-![Lead Page](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/lead_page.png)
+---
 
 ### 2️⃣ LWC 기반 제품 커스터마이저 및 견적서 생성
 
-고객은 Experience Cloud에서 직접 제품을 커스터마이징하고,  
-직원은 해당 정보를 기반으로 **견적서를 클릭 한 번으로 생성**할 수 있도록 구현했습니다.
+- LWC 기반 제품 옵션 선택 UI 구성
+- 커스터마이징 결과가 Opportunity/Quotation에 반영되도록 데이터 흐름 설계
+- Visualforce 기반 PDF 견적서 생성 구조 적용
 
-- LWC 기반 제품 옵션 선택 UI
-- 커스터마이징 결과를 Opportunity & Quotation에 자동 반영
-- Visualforce 기반 PDF 견적서 자동 생성
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_quotation.png" width="650" />
+</p>
 
-[![견적서 생성 시연](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/create_quotation.png)](https://github.com/Eungu-Kim/maison-lavin-project/blob/dev/docs/videos/demo-quotation.mp4)
+---
 
 ### 3️⃣ Experience Cloud 고객 포털 (로그인, 주문 조회, 견적 확인)
 
-고객은 별도의 상담 없이도  
-**주문 제작 상태, 견적서, 결제 정보**를 직접 확인할 수 있습니다.
+- 고객 로그인/회원가입 흐름 기반 접근 제어
+- 견적서(PDF) 및 주문 제작 진행 상태 확인
+- 고객-직원 간 커뮤니케이션을 위한 접점 제공
 
-- 고객 전용 로그인 & 회원가입
-- 견적서 PDF 조회
-- 주문 제작 진행 상태 확인
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/quotation_check.png" width="650" />
+</p>
 
-![Quotation Check](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/quotation_check.png)
+---
 
 ### 4️⃣ Customer 360 통합 콘솔
 
-Sales, Service, Order, Asset, Interaction 데이터를 하나의 화면으로 통합한  
-**Customer 360 콘솔**을 구축하여, 직원이 고객 상태를 즉시 파악할 수 있도록 했습니다.
+- 고객 기본 정보 + 주문/견적/자산/케어 이력 통합 조회
+- 고객 여정 단계별 핵심 정보 요약
+- 담당자가 한 화면에서 Next Action을 판단 가능한 구조
 
-- 고객 기본 정보
-- 주문·견적·자산·케어 이력
-- 장바구니 및 추천 정보
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customer360.png" width="650" />
+</p>
 
-![Customer 360](https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/customer360.png)
+---
 
 ### 5️⃣ Omni-Channel 상담 및 Case 관리
+
+- Agentforce 기반 1차 응대 및 문의 분류
+- Omni-Channel을 통한 상담원 라우팅 및 인계 흐름
+- Case 진행 상태 공유 및 내부 코멘트 기반 협업 구조
+
+<p>
+  <img src="https://github.com/Eungu-Kim/maison-lavin-project/releases/download/v1.0/repair_agentforce.png" width="650" />
+</p>
 
 <br/>
 
