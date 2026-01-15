@@ -220,8 +220,8 @@ Omni-Channel (Agentforce → Human Agent → Case 기반 상담 흐름)
 
 | 역할 | 이름 |
 |------|------|
-| PL · Salesforce Developer & Admin | 김은수 |
 | PM · Salesforce Admin | 이영호 |
+| PL · Salesforce Developer & Admin | **김은수** |
 | Salesforce Admin | 강은혜 |
 | Salesforce Developer | 강민형 |
 
